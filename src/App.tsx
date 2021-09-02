@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
 import { useState } from 'react';
 import { Principal } from './dtos/principal';
+import RegisterComponent from './components/RegisterComponent';
 
 function App() {
 
@@ -13,7 +14,10 @@ function App() {
   return (
     <>
       <Router>
-        <HomeComponent currentUser={authUser} />
+        <Switch>
+          <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
+          <Route path='/register' render={() => <RegisterComponent /> } />
+        </Switch>
       </Router>
     </>
   );
