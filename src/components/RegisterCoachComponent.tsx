@@ -4,6 +4,15 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import { registerNewCoach } from "../remote/coach-service";
 
+interface IRegisterCoachProps {
+    open: boolean,
+    setOpen: (openValue: boolean) => void,
+    message: string,
+    setMessage: (newMessage: string) => void,
+    severity: Color | undefined,
+    setSeverity: (newSeverity: Color | undefined) => void
+}
+
 function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant='filled' {...props} />;
 }
@@ -18,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     }))
 
-function RegisterCoachComponent() {
+function RegisterCoachComponent(props: IRegisterCoachProps) {
 
     const history = useHistory();
 
@@ -29,21 +38,10 @@ function RegisterCoachComponent() {
         sport: '',
         teamName: ''
     });
-    const [open, setOpen] = useState(false);
-    const [message, setMessage] = useState('');
-    const [severity, setSeverity] = useState('error' as Color | undefined)
 
     let handleChange = (e: any) => {
         const { name, value } = e.target;
         setFormData({...formData, [name]: value});
-    }
-
-    let handleClose = (e?: React.SyntheticEvent, r?: string) => {
-        if (r === 'clickaway') {
-            return;
-        }
-
-        setOpen(false);
     }
 
     let isFormValid = () => {
@@ -58,22 +56,22 @@ function RegisterCoachComponent() {
     let register = async () => {
         
         if (!isFormValid()) {
-            setMessage('Please fill in all fields');
-            setSeverity('warning');
-            setOpen(true)
+            props.setMessage('Please fill in all fields');
+            props.setSeverity('warning');
+            props.setOpen(true)
             return;
         }
 
         try {
             await registerNewCoach(formData);
-            setMessage('Successfully registered!');
-            setSeverity('success');
-            setOpen(true)
+            props.setMessage('Successfully registered!');
+            props.setSeverity('success');
+            props.setOpen(true)
             history.push('/login')
         } catch (e: any) {
-            setSeverity('error')
-            setMessage(e.response.data.message);
-            setOpen(true);
+            props.setSeverity('error')
+            props.setMessage(e.response.data.message);
+            props.setOpen(true);
         }
     }
 
@@ -145,10 +143,6 @@ function RegisterCoachComponent() {
                 color='primary'
                 size='medium'>Register</Button>
             </div>
-            
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity={severity}>{message}</Alert>
-            </Snackbar>
         </>
     )
 }
