@@ -1,4 +1,4 @@
-import { Button, FormControl, Input, InputLabel, Snackbar, Typography } from "@material-ui/core";
+import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles, Snackbar, Typography } from "@material-ui/core";
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert'
 import { useState } from "react";
 import { useHistory } from "react-router";
@@ -7,6 +7,16 @@ import { registerNewCoach } from "../remote/coach-service";
 function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant='filled' {...props} />;
 }
+
+const useStyles = makeStyles((theme: Theme) => 
+    createStyles({
+        root: {
+            justifyContent: 'center',
+            display: 'flex',
+            flexWrap: 'wrap',
+            margin: theme.spacing(12)
+        }
+    }))
 
 function RegisterCoachComponent() {
 
@@ -62,15 +72,17 @@ function RegisterCoachComponent() {
             history.push('/login')
         } catch (e: any) {
             setSeverity('error')
-            setMessage(e.message);
+            setMessage(e.response.data.message);
             setOpen(true);
         }
     }
 
+    const classes = useStyles();
+
     return (
         <>
             <Typography align='center' variant='h3'>Register Your Team!</Typography>
-
+            <div className={classes.root}>
             <FormControl margin='normal' fullWidth>
                 <InputLabel htmlFor='coachName'>Your Name</InputLabel>
                 <Input
@@ -132,6 +144,7 @@ function RegisterCoachComponent() {
                 variant='contained'
                 color='primary'
                 size='medium'>Register</Button>
+            </div>
             
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={severity}>{message}</Alert>
