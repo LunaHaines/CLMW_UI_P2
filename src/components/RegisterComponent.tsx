@@ -1,8 +1,18 @@
 import { useState } from 'react';
 import { Button, Typography } from '@material-ui/core'
 import RegisterCoachComponent from './RegisterCoachComponent';
+import { Color } from '@material-ui/lab/Alert';
 
-function RegisterComponent() {
+interface IRegisterProps {
+    open: boolean,
+    setOpen: (openValue: boolean) => void,
+    message: string,
+    setMessage: (newMessage: string) => void,
+    severity: Color | undefined,
+    setSeverity: (newSeverity: Color | undefined) => void
+}
+
+function RegisterComponent(props: IRegisterProps) {
     const [formType, setFormType] = useState(undefined as String | undefined)
 
     return (
@@ -12,7 +22,7 @@ function RegisterComponent() {
         </>
         : (formType === 'coach') ?
         <>
-            <RegisterCoachComponent />
+            <RegisterCoachComponent open={props.open} setOpen={props.setOpen} message={props.message} setMessage={props.setMessage} severity={props.severity} setSeverity={props.setSeverity} />
         </>
         :
         <>
