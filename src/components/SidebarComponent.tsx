@@ -1,4 +1,5 @@
-import { Divider, Drawer, IconButton, List, useTheme } from "@material-ui/core";
+import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, useTheme } from "@material-ui/core";
+import { DirectionsRunRounded } from "@material-ui/icons";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Principal } from "../dtos/principal";
@@ -16,6 +17,10 @@ function SidebarComponent(props: ISidebarProps) {
     }
 
     return (
+        (!props.authUser) ?
+        <>
+        </>
+        : (props.authUser.role === 'coach') ?
         <>
             <Drawer variant='permanent'>
                 <IconButton onClick={handleDrawerClose}>
@@ -23,8 +28,18 @@ function SidebarComponent(props: ISidebarProps) {
                 </IconButton>
                 <Divider />
                 <List>
+                    {['Team', 'Workouts', 'Players'].map((text, index) => (
+                        <ListItem button key={text}>
+                            <ListItemIcon>
+                                <DirectionsRunRounded />
+                            </ListItemIcon>
+                        </ListItem>
+                    ))}
                 </List>
             </Drawer>
+        </>
+        :
+        <>
         </>
     )
 }
