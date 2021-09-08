@@ -46,7 +46,7 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <SidebarComponent authUser={authUser}/>
+      <SidebarComponent authUser={authUser} setDrawerOpen={setDrawerOpen}/>
       <Router>
         <Switch>
           <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
