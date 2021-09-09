@@ -71,29 +71,43 @@ function SidebarComponent(props: ISidebarProps) {
             }}>
                 <div className={classes.toolbar}>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                        {(theme.direction === 'rtl') ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button key='Team'>
-                        <ListItemIcon>
-                            <PeopleRounded />
-                        </ListItemIcon>
-                        <ListItemText primary='Team' />
-                    </ListItem>
-                    <ListItem button key='Workouts'>
-                        <ListItemIcon>
-                            <DirectionsRunRounded />
-                        </ListItemIcon>
-                        <ListItemText primary='Workouts' />
-                    </ListItem>
-                    <ListItem button key='Players'>
-                        <ListItemIcon>
-                            <PersonRounded />
-                        </ListItemIcon>
-                        <ListItemText primary='Players' />
-                    </ListItem>'
+                    {(!props.authUser) ?
+                    <>
+                    </>
+                    : (props.authUser.role === 'Coach') ?
+                    <>
+                        <ListItem button key='Team'>
+                            <ListItemIcon>
+                                <PeopleRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Team' />
+                        </ListItem>
+                        <ListItem button key='Workouts'>
+                            <ListItemIcon>
+                                <DirectionsRunRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Workouts' />
+                        </ListItem>
+                        <ListItem button key='Players'>
+                            <ListItemIcon>
+                                <PersonRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Players' />
+                        </ListItem>
+                    </>
+                    : (props.authUser.role === 'Player') ?
+                    <>
+                    </>
+                    :
+                    <>
+                    </>
+
+                    }
                 </List>
             </Drawer>
         </>
