@@ -75,7 +75,7 @@ function App() {
       <AppBar position='static' className={clsx(classes.appBar, {
         [classes.appBarShift]: drawerOpen
       })}>
-        <Toolbar variant='dense'>
+        <Toolbar>
           <IconButton color='inherit' aria-label='open drawer' onClick={handleDrawerOpen} edge='start' className={clsx(classes.menuButton, {[classes.hide]: drawerOpen})}>
             <MenuIcon />
           </IconButton>
