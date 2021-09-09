@@ -1,9 +1,8 @@
-import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, useTheme } from "@material-ui/core";
+import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, useTheme } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { DirectionsRunRounded, PeopleRounded, PersonRounded } from "@material-ui/icons";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { isClassExpression } from "typescript";
 import { Principal } from "../dtos/principal";
 import clsx from 'clsx';
 
@@ -60,10 +59,6 @@ function SidebarComponent(props: ISidebarProps) {
     const classes = useStyles();
 
     return (
-        (!props.authUser) ?
-        <>
-        </>
-        : (props.authUser.role === 'Coach') ?
         <>
             <Drawer variant='permanent' className={clsx(classes.drawer, {
                 [classes.drawerOpen]: props.drawerOpen,
@@ -85,22 +80,22 @@ function SidebarComponent(props: ISidebarProps) {
                         <ListItemIcon>
                             <PeopleRounded />
                         </ListItemIcon>
+                        <ListItemText primary='Team' />
                     </ListItem>
                     <ListItem button key='Workouts'>
                         <ListItemIcon>
                             <DirectionsRunRounded />
                         </ListItemIcon>
+                        <ListItemText primary='Workouts' />
                     </ListItem>
                     <ListItem button key='Players'>
                         <ListItemIcon>
                             <PersonRounded />
                         </ListItemIcon>
+                        <ListItemText primary='Players' />
                     </ListItem>'
                 </List>
             </Drawer>
-        </>
-        :
-        <>
         </>
     )
 }
