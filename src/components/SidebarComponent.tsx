@@ -76,10 +76,8 @@ function SidebarComponent(props: ISidebarProps) {
                 </div>
                 <Divider />
                 <List>
-                    {(!props.authUser) ?
-                    <>
-                    </>
-                    : (props.authUser.role === 'Coach') ?
+                    {
+                    (JSON.stringify(props.authUser?.role) === 'Coach') ?
                     <>
                         <ListItem button key='Team'>
                             <ListItemIcon>
@@ -100,11 +98,12 @@ function SidebarComponent(props: ISidebarProps) {
                             <ListItemText primary='Players' />
                         </ListItem>
                     </>
-                    : (props.authUser.role === 'Player') ?
+                    : (props.authUser?.role === 'Player') ?
                     <>
                     </>
                     :
                     <>
+                        <ListItemText primary='Nothing, but worse' />
                     </>
 
                     }
