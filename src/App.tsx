@@ -21,6 +21,9 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
+    root: {
+      display: 'flex'
+    },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
@@ -68,6 +71,7 @@ function App() {
 
   return (
     <>
+      <div className={classes.root}>
       <AppBar position='static' className={clsx(classes.appBar, {
         [classes.appBarShift]: drawerOpen
       })}>
@@ -81,6 +85,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <SidebarComponent authUser={authUser} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
+      </div>
       <Router>
         <Switch>
           <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
