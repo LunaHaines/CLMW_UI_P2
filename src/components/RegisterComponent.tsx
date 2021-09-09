@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Typography } from '@material-ui/core'
 import RegisterCoachComponent from './RegisterCoachComponent';
 import { Color } from '@material-ui/lab/Alert';
+import RegisterPlayerComponent from './RegisterPlayerComponent';
 
 interface IRegisterProps {
     open: boolean,
@@ -19,6 +20,7 @@ function RegisterComponent(props: IRegisterProps) {
         (formType === 'player') ?
         // RegisterPlayerComponent goes in this fragment
         <>
+            <RegisterPlayerComponent open={props.open} setOpen={props.setOpen} message={props.message} setMessage={props.setMessage} severity={props.severity} setSeverity={props.setSeverity}/>
         </>
         : (formType === 'coach') ?
         <>
