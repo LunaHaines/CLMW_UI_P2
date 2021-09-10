@@ -1,5 +1,5 @@
-import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles, Snackbar, Typography } from "@material-ui/core";
-import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert'
+import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles, Typography } from "@material-ui/core";
+import { Color } from '@material-ui/lab/Alert'
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { registerNewCoach } from "../remote/coach-service";
@@ -11,10 +11,6 @@ interface IRegisterCoachProps {
     setMessage: (newMessage: string) => void,
     severity: Color | undefined,
     setSeverity: (newSeverity: Color | undefined) => void
-}
-
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant='filled' {...props} />;
 }
 
 const useStyles = makeStyles((theme: Theme) => 
