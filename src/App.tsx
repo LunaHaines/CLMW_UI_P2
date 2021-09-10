@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
@@ -8,6 +7,7 @@ import { Principal } from './dtos/principal';
 import RegisterComponent from './components/RegisterComponent';
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert'
 import { Snackbar } from '@material-ui/core';
+import LoginComponent from './components/LoginComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -33,6 +33,7 @@ function App() {
         <Switch>
           <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
           <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
+          <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
         </Switch>
       </Router>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
