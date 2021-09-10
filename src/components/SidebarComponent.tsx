@@ -53,11 +53,6 @@ function SidebarComponent(props: ISidebarProps) {
     const theme = useTheme();
 
     let handleDrawerClose = () => {
-        console.log(props.authUser);
-        console.log(props.authUser?.role);
-        console.log(typeof props.authUser);
-        
-        
         props.setDrawerOpen(false);
     }
 
@@ -76,7 +71,7 @@ function SidebarComponent(props: ISidebarProps) {
             }}>
                 <div className={classes.toolbar}>
                     <IconButton onClick={handleDrawerClose}>
-                        {(theme.direction === 'rtl') ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
                 <Divider />
