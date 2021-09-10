@@ -9,6 +9,8 @@ import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Principal } from '../dtos/principal';
 import { coachLogin } from '../remote/auth-service';
+import { recruiterLogin } from '../remote/auth-service';
+
 
 interface ILoginProps {
     setAuthUser: (nextUser: Principal | undefined) => void,
@@ -71,6 +73,19 @@ function LoginComponent(props: ILoginProps) {
                 props.setSeverity('success');
                 props.setOpen(true);
                 history.push('/coachdashboard')
+            } catch (e: any) {
+                props.setSeverity('error');
+                props.setMessage(e.response.data.message);
+                props.setOpen(true);
+            }
+        }else if (formData.role === 'recruiter'){
+            try {
+                let principal = await recruiterLogin(formData);
+                props.setAuthUser(principal);
+                props.setMessage('successfully logged in!');
+                props.setSeverity('success');
+                props.setOpen(true);
+                history.push('/recruiterdashboard')
             } catch (e: any) {
                 props.setSeverity('error');
                 props.setMessage(e.response.data.message);

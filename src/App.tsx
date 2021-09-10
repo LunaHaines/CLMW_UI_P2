@@ -67,8 +67,6 @@ function App() {
   }
 
   let handleDrawerOpen = () => {
-    console.log('in App.tsx role: ' + authUser?.role);
-    
     setDrawerOpen(true);
   }
 

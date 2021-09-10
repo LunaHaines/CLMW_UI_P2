@@ -3,6 +3,7 @@ import { Button, Typography } from '@material-ui/core'
 import RegisterCoachComponent from './RegisterCoachComponent';
 import { Color } from '@material-ui/lab/Alert';
 import RegisterPlayerComponent from './RegisterPlayerComponent';
+import RegisterRecruiterComponent from './RegisterRecruiterComponent';
 
 interface IRegisterProps {
     open: boolean,
@@ -25,6 +26,10 @@ function RegisterComponent(props: IRegisterProps) {
         : (formType === 'coach') ?
         <>
             <RegisterCoachComponent open={props.open} setOpen={props.setOpen} message={props.message} setMessage={props.setMessage} severity={props.severity} setSeverity={props.setSeverity} />
+        </>
+        : (formType === 'recruiter') ?
+        <>
+            <RegisterRecruiterComponent open={props.open} setOpen={props.setOpen} message={props.message} setMessage={props.setMessage} severity={props.severity} setSeverity={props.setSeverity} />
         </>
         :
         <>
