@@ -136,7 +136,6 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     :
                     <>
-                        <ListItemText primary='Bottom' />
                     </>
 
                     }
