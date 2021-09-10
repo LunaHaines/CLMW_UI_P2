@@ -1,6 +1,6 @@
 import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, useTheme } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { DirectionsRunRounded, PeopleRounded, PersonRounded } from "@material-ui/icons";
+import { AccountCircleRounded, GroupAddRounded, PeopleRounded, SportsRounded } from "@material-ui/icons";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Principal } from "../dtos/principal";
@@ -76,24 +76,70 @@ function SidebarComponent(props: ISidebarProps) {
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button key='Team'>
-                        <ListItemIcon>
-                            <PeopleRounded />
-                        </ListItemIcon>
-                        <ListItemText primary='Team' />
-                    </ListItem>
-                    <ListItem button key='Workouts'>
-                        <ListItemIcon>
-                            <DirectionsRunRounded />
-                        </ListItemIcon>
-                        <ListItemText primary='Workouts' />
-                    </ListItem>
-                    <ListItem button key='Players'>
-                        <ListItemIcon>
-                            <PersonRounded />
-                        </ListItemIcon>
-                        <ListItemText primary='Players' />
-                    </ListItem>'
+                    {
+                    (props.authUser?.role === 'Coach') ?
+                    <>
+                        <ListItem button key='Team'>
+                            <ListItemIcon>
+                                <PeopleRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Team' />
+                        </ListItem>
+                        <ListItem button key='Workouts'>
+                            <ListItemIcon>
+                                <SportsRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Workouts' />
+                        </ListItem>
+                        <ListItem button key='Players'>
+                            <ListItemIcon>
+                                <GroupAddRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Players' />
+                        </ListItem>
+                    </>
+                    : (props.authUser?.role === 'Player') ?
+                    <>
+                        <ListItem button key='Teams'>
+                            <ListItemIcon>
+                                <PeopleRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Teams' />
+                        </ListItem>
+                        <ListItem button key='Workouts'>
+                            <ListItemIcon>
+                                <SportsRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Workouts' />
+                        </ListItem>
+                        <ListItem button key='Profile'>
+                            <ListItemIcon>
+                                <AccountCircleRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Profile' />
+                        </ListItem>
+                    </>
+                    : (props.authUser?.role === 'Recruiter') ?
+                    <>
+                        <ListItem button key='Players'>
+                            <ListItemIcon>
+                                <PeopleRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Players' />
+                        </ListItem>
+                        <ListItem button key='Profile'>
+                            <ListItemIcon>
+                                <AccountCircleRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Profile' />
+                        </ListItem>
+                    </>
+                    :
+                    <>
+                        <ListItemText primary='Bottom' />
+                    </>
+
+                    }
                 </List>
             </Drawer>
         </>
