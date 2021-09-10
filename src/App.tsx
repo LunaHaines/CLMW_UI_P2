@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import clsx from 'clsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -23,6 +22,9 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
     root: {
+      margin: theme.spacing(7) + 1
+    },
+    navigation: {
       display: 'flex'
     },
     appBar: {
@@ -72,28 +74,30 @@ function App() {
 
   return (
     <>
-      <div className={classes.root}>
-      <AppBar position='static' className={clsx(classes.appBar, {
-        [classes.appBarShift]: drawerOpen
-      })}>
-        <Toolbar variant='dense'>
-          <IconButton color='inherit' aria-label='open drawer' onClick={handleDrawerOpen} edge='start' className={clsx(classes.menuButton, {[classes.hide]: drawerOpen})}>
-            <MenuIcon />
-          </IconButton>
-          <Typography variant='h6' color='inherit'>
-            TeaManager
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <SidebarComponent authUser={authUser} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
+      <div className={classes.navigation}>
+        <AppBar position='static' className={clsx(classes.appBar, {
+          [classes.appBarShift]: drawerOpen
+        })}>
+          <Toolbar>
+            <IconButton color='inherit' aria-label='open drawer' onClick={handleDrawerOpen} edge='start' className={clsx(classes.menuButton, {[classes.hide]: drawerOpen})}>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant='h6' color='inherit'>
+              TeaManager
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <SidebarComponent authUser={authUser} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
       </div>
-      <Router>
-        <Switch>
-          <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
-          <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
-          <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
-        </Switch>
-      </Router>
+      <div className={classes.root}>
+        <Router>
+          <Switch>
+            <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
+            <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
+            <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
+          </Switch>
+        </Router>
+      </div>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={severity}>{message}</Alert>
       </Snackbar>
