@@ -1,10 +1,11 @@
 import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, useTheme } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { AccountCircleRounded, GroupAddRounded, PeopleRounded, SportsRounded } from "@material-ui/icons";
+import { AccountCircleRounded, AttachMoneyRounded, GroupAddRounded, PeopleRounded, SportsRounded } from "@material-ui/icons";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Principal } from "../dtos/principal";
 import clsx from 'clsx';
+import { useHistory } from "react-router";
 
 interface ISidebarProps {
     authUser: Principal | undefined,
@@ -51,9 +52,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function SidebarComponent(props: ISidebarProps) {
     const theme = useTheme();
+    const history = useHistory();
 
     let handleDrawerClose = () => {
         props.setDrawerOpen(false);
+    }
+
+    let handleOffersClick = () => {
+        history.push('/offers')
+    }
+
+    let handleCoachWorkoutClick = () => {
+        history.push('/workouts')
     }
 
     const classes = useStyles();
@@ -85,7 +95,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Team' />
                         </ListItem>
-                        <ListItem button key='Workouts'>
+                        <ListItem button key='Workouts' onClick={handleCoachWorkoutClick}>
                             <ListItemIcon>
                                 <SportsRounded />
                             </ListItemIcon>
@@ -100,6 +110,12 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     : (props.authUser?.role === 'Player') ?
                     <>
+                        <ListItem button key='Offers' onClick={handleOffersClick}>
+                            <ListItemIcon>
+                                <AttachMoneyRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Offers' />
+                        </ListItem>
                         <ListItem button key='Teams'>
                             <ListItemIcon>
                                 <PeopleRounded />
