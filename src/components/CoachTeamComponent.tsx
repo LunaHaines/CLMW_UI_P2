@@ -1,7 +1,8 @@
 import { Backdrop, Button, Fade, Modal, Paper, TextField, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
+import { PositionRequest } from "../dtos/position-request";
 import { Principal } from "../dtos/principal";
-import { getAuthorizedCoach } from "../remote/coach-service";
+import { assignPlayerPosition, getAuthorizedCoach } from "../remote/coach-service";
 
 interface ICoachTeamProps {
     authUser: Principal | undefined
@@ -38,9 +39,18 @@ function CoachTeamComponent(props: ICoachTeamProps) {
     }
 
     let assignPosition = async () => {
-        // make api call to assign role to player here
-        // second call to get updated team
-        // setPlayerNames
+        try {
+            if (props.authUser) {
+                let request: PositionRequest = new PositionRequest(props.authUser.username, selectedPlayerUsername, positionInput);
+                await assignPlayerPosition(request);
+                let resp = await getAuthorizedCoach(props.authUser.username)
+                setPlayerNames(resp.players)
+            }
+        } catch (e: any) {
+            console.log(e);
+            
+        }
+
     }
 
     let handleClose = () => {
