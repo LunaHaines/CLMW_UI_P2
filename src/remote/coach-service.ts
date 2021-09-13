@@ -21,3 +21,14 @@ export const acceptOffer = async (acceptedOffer: Offer) => {
     }
 
 }
+
+export const getAuthorizedCoach = async (coachUsername: string) => {
+
+    let resp = await teamManagerClient.get(`/coach/${coachUsername}`);
+
+    if (resp.status >= 400 && resp.status <= 599) {
+        throw resp.data;
+    }
+
+    return resp.data;
+}
