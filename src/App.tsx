@@ -14,6 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import SidebarComponent from './components/SidebarComponent';
 import OffersComponent from './components/OffersComponent';
 import WorkoutComponent from './components/WorkoutsComponent';
+import CoachTeamComponent from './components/CoachTeamComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -99,6 +100,7 @@ function App() {
             <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
             <Route path='/workouts' render={() => <WorkoutComponent /> } />
+            <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
           </Switch>
         </div>
       </Router>
