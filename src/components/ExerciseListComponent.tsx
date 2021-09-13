@@ -1,6 +1,6 @@
 import { Exercise } from '../dtos/exercise';
-import { DataGrid, GridColDef, GridToolbarFilterButton } from '@mui/x-data-grid';
-import { makeStyles, Theme } from '@material-ui/core';
+import { DataGrid, GridApi, GridColDef, GridToolbarFilterButton } from '@mui/x-data-grid';
+import { Button, makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/core/styles';
 
 interface IExerciseListProps {
@@ -12,6 +12,28 @@ interface Data {
     equipment: string,
     target: string,
     name: string
+}
+
+const renderDetailsButton = (params: any) => {
+    return (
+        <strong>
+            <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                style={{ marginLeft: 16 }}
+                onClick={() => {
+                    assignExercise(params.row.col1)
+                }}
+            >
+                More Info
+            </Button>
+        </strong>
+    )
+}
+
+const assignExercise = (exerciseName: string) => {
+    console.log(exerciseName);
 }
 
 const columns: GridColDef[] = [
@@ -38,9 +60,11 @@ const columns: GridColDef[] = [
     {
         field: 'assign',
         headerName: 'Assign',
-        flex: .5
+        flex: .5,
+        renderCell: renderDetailsButton
     }
 ]
+
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
