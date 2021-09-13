@@ -15,18 +15,8 @@ function CoachTeamComponent(props: ICoachTeamProps) {
     const [open, setOpen] = useState(false);
 
     let getPlayers = async () => {
-        console.log('inside getPlayers');
-        
         if (props.authUser) {
-            console.log('inside props.authUser');
-            console.log(playerNames);
-            console.log(!playerNames);
-            
-            
-            
             if (!playerNames) {
-                console.log('inside !playerNames');
-                
                 let resp = await getAuthorizedCoach(props.authUser.username)
                 setPlayerNames(resp.players)
             }
