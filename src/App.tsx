@@ -13,6 +13,8 @@ import LoginComponent from './components/LoginComponent';
 import MenuIcon from '@material-ui/icons/Menu'
 import SidebarComponent from './components/SidebarComponent';
 import WorkoutComponent from './components/WorkoutsComponent';
+import CoachDashboardComponent from './components/CoachDashboardComponent';
+
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -97,6 +99,7 @@ function App() {
             <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/workouts' render={() => <WorkoutComponent /> } />
+			<Route path='/coachdashboard' render={() => <CoachDashboardComponent currentUser={authUser} /> } />
           </Switch>
         </div>
       </Router>
