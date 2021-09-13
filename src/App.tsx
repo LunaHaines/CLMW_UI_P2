@@ -117,7 +117,7 @@ function App() {
             <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} errorOpen={false} setErrorOpen={setOpen} errorMessage={message} setErrorMessage={setMessage} errorSeverity={severity} setErrorSeverity={setSeverity} /> } />
             <Route path='/recruiterdashboard' render={() => <RecruiterDashboard setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity} /> } />
             <Route path='/playerworkouts' render={() => <PlayerWorkoutComponent authUser={authUser} /> } />
-
+            <Route path='/playerdashboard' render={() => <></>}/>
           </Switch>
         </div>
       </Router>
