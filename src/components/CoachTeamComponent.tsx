@@ -1,5 +1,5 @@
 import { Backdrop, Button, Fade, Modal, Paper, TextField, Typography } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PositionRequest } from "../dtos/position-request";
 import { Principal } from "../dtos/principal";
 import { assignPlayerPosition, getAuthorizedCoach } from "../remote/coach-service";
@@ -9,14 +9,24 @@ interface ICoachTeamProps {
 }
 
 function CoachTeamComponent(props: ICoachTeamProps) {
-    const [playerNames, setPlayerNames] = useState([] as string[][]);
+    const [playerNames, setPlayerNames] = useState(undefined as string[][] | undefined);
     const [selectedPlayerUsername, setSelectedPlayerUsername] = useState('');
     const [positionInput, setPositionInput] = useState('');
     const [open, setOpen] = useState(false);
 
     let getPlayers = async () => {
+        console.log('inside getPlayers');
+        
         if (props.authUser) {
+            console.log('inside props.authUser');
+            console.log(playerNames);
+            console.log(!playerNames);
+            
+            
+            
             if (!playerNames) {
+                console.log('inside !playerNames');
+                
                 let resp = await getAuthorizedCoach(props.authUser.username)
                 setPlayerNames(resp.players)
             }
@@ -61,11 +71,12 @@ function CoachTeamComponent(props: ICoachTeamProps) {
         setPositionInput(e.target)
     }
 
-    useEffect(() => {getPlayers();});
+    getPlayers();
 
     return (
         <>
             {playerNames?.sort(comparePositions).map((playerInfo) => {
+                return (
                 <>
                     <Typography variant='h6'>Name: {playerInfo[0]}</Typography>
                     <Typography variant='h6'>Position: {playerInfo[1]}</Typography>
@@ -79,7 +90,7 @@ function CoachTeamComponent(props: ICoachTeamProps) {
                         <Typography variant='body1'>assign position</Typography>
                     </Button>
                     <br/><br/>
-                </>
+                </>)
             })}
             <Modal
                 open={open}
