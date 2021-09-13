@@ -58,6 +58,10 @@ function SidebarComponent(props: ISidebarProps) {
         props.setDrawerOpen(false);
     }
 
+    let handleCoachWorkoutClick = () => {
+        history.push('/workouts')
+    }
+
     const classes = useStyles();
 
     let playerProfile = () => {
@@ -91,7 +95,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Team' />
                         </ListItem>
-                        <ListItem button key='Workouts'>
+                        <ListItem button key='Workouts' onClick={handleCoachWorkoutClick}>
                             <ListItemIcon>
                                 <SportsRounded />
                             </ListItemIcon>
