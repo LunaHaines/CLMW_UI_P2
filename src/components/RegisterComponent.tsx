@@ -19,7 +19,6 @@ function RegisterComponent(props: IRegisterProps) {
 
     return (
         (formType === 'player') ?
-        // RegisterPlayerComponent goes in this fragment
         <>
             <RegisterPlayerComponent open={props.open} setOpen={props.setOpen} message={props.message} setMessage={props.setMessage} severity={props.severity} setSeverity={props.setSeverity}/>
         </>
@@ -46,6 +45,13 @@ function RegisterComponent(props: IRegisterProps) {
                 color='primary'
                 onClick={() => setFormType('coach')}>
                     Coach
+            </Button>
+            <Button 
+                id='form-type-recruiter'
+                variant='contained'
+                color='primary'
+                onClick={() => setFormType('recruiter')}>
+                    Recruiter
             </Button>
         </>
     )
