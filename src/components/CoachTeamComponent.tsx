@@ -1,16 +1,26 @@
 import { Backdrop, Button, Fade, Modal, Paper, TextField, Typography } from "@material-ui/core";
-import { PlayCircleOutlineRounded } from "@material-ui/icons";
-import { randomInt } from "crypto";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Principal } from "../dtos/principal";
+import { getAuthorizedCoach } from "../remote/coach-service";
 
 interface ICoachTeamProps {
-    playerNames: string[][]
+    authUser: Principal | undefined
 }
 
 function CoachTeamComponent(props: ICoachTeamProps) {
+    const [playerNames, setPlayerNames] = useState([] as string[][]);
     const [selectedPlayerUsername, setSelectedPlayerUsername] = useState('');
     const [positionInput, setPositionInput] = useState('');
     const [open, setOpen] = useState(false);
+
+    let getPlayers = async () => {
+        if (props.authUser) {
+            if (!playerNames) {
+                let resp = await getAuthorizedCoach(props.authUser.username)
+                setPlayerNames(resp.players)
+            }
+        }
+    }
 
     let comparePositions = (player1Info: string[], player2Info: string[]) => {
         if (player1Info[1] > player2Info[1]) {
@@ -27,8 +37,10 @@ function CoachTeamComponent(props: ICoachTeamProps) {
         setSelectedPlayerUsername(playerUsername);
     }
 
-    let assignPosition = () => {
+    let assignPosition = async () => {
         // make api call to assign role to player here
+        // second call to get updated team
+        // setPlayerNames
     }
 
     let handleClose = () => {
@@ -39,9 +51,11 @@ function CoachTeamComponent(props: ICoachTeamProps) {
         setPositionInput(e.target)
     }
 
+    useEffect(() => {getPlayers();});
+
     return (
         <>
-            {props.playerNames?.sort(comparePositions).map((playerInfo) => {
+            {playerNames?.sort(comparePositions).map((playerInfo) => {
                 <>
                     <Typography variant='h6'>Name: {playerInfo[0]}</Typography>
                     <Typography variant='h6'>Position: {playerInfo[1]}</Typography>
