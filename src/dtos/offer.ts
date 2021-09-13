@@ -1,4 +1,5 @@
 export class Offer {
+
     coachUsername: string;
     playerUsername: string;
 

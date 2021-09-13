@@ -1,6 +1,6 @@
 import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, useTheme } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { AccountCircleRounded, GroupAddRounded, PeopleRounded, SportsRounded } from "@material-ui/icons";
+import { AccountCircleRounded, AttachMoneyRounded, GroupAddRounded, PeopleRounded, SportsRounded } from "@material-ui/icons";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Principal } from "../dtos/principal";
@@ -58,6 +58,10 @@ function SidebarComponent(props: ISidebarProps) {
         props.setDrawerOpen(false);
     }
 
+    let handleOffersClick = () => {
+        history.push('/offers')
+    }
+
     let handleCoachWorkoutClick = () => {
         history.push('/workouts')
     }
@@ -106,6 +110,12 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     : (props.authUser?.role === 'Player') ?
                     <>
+                        <ListItem button key='Offers' onClick={handleOffersClick}>
+                            <ListItemIcon>
+                                <AttachMoneyRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Offers' />
+                        </ListItem>
                         <ListItem button key='Teams'>
                             <ListItemIcon>
                                 <PeopleRounded />

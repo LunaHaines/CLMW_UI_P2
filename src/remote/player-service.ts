@@ -20,9 +20,20 @@ export const getAllPlayers = async (sport: String) => {
     if (resp.status >= 400 && resp.status <= 599) {
         throw resp.data;
     }
+    
+    return resp.data;
+}
+
+export const getAuthorizedPlayer = async (authUsername: string) => {
+    let resp = await teamManagerClient.get(`/players/${authUsername}`);
+
+    if (resp.status >= 400 && resp.status <= 599){
+        throw resp.data;
+    }
 
     return resp.data;
 }
+
 export const modifyOffer = async (coachUsername: String, playerUsername: String, type: String) => {
 
     let resp = await teamManagerClient.put('/players/' + type, {coachUsername, playerUsername});
