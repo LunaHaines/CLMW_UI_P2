@@ -9,3 +9,13 @@ export const RegisterNewPlayer = async (newPlayer: RegisterPlayerComponent) => {
         throw resp.data;
     }
 }
+
+export const getAuthorizedPlayer = async (authUsername: string) => {
+    let resp = await teamManagerClient.get(`/players/${authUsername}`);
+
+    if (resp.status >= 400 && resp.status <= 599){
+        throw resp.data;
+    }
+
+    return resp.data;
+}
