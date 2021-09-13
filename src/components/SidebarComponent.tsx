@@ -61,7 +61,7 @@ function SidebarComponent(props: ISidebarProps) {
     let handleOffersClick = () => {
         history.push('/offers')
     }
-    
+
     let handleCoachWorkoutClick = () => {
         history.push('/workouts')
     }
