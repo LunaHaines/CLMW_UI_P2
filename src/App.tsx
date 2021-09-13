@@ -12,6 +12,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import LoginComponent from './components/LoginComponent';
 import MenuIcon from '@material-ui/icons/Menu'
 import SidebarComponent from './components/SidebarComponent';
+import OffersComponent from './components/OffersComponent';
+import WorkoutComponent from './components/WorkoutsComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -74,6 +76,7 @@ function App() {
 
   return (
     <>
+      <Router>
       <div className={classes.navigation}>
         <AppBar position='static' className={clsx(classes.appBar, {
           [classes.appBarShift]: drawerOpen
@@ -90,14 +93,15 @@ function App() {
         <SidebarComponent authUser={authUser} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
       </div>
       <div className={classes.root}>
-        <Router>
           <Switch>
             <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
             <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
+            <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
+            <Route path='/workouts' render={() => <WorkoutComponent /> } />
           </Switch>
-        </Router>
-      </div>
+        </div>
+      </Router>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={severity}>{message}</Alert>
       </Snackbar>
