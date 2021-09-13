@@ -5,6 +5,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Principal } from "../dtos/principal";
 import clsx from 'clsx';
+import { useHistory } from "react-router";
 
 interface ISidebarProps {
     authUser: Principal | undefined,
@@ -51,12 +52,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function SidebarComponent(props: ISidebarProps) {
     const theme = useTheme();
+    const history = useHistory();
 
     let handleDrawerClose = () => {
         props.setDrawerOpen(false);
     }
 
     const classes = useStyles();
+
+    let playerProfile = () => {
+        history.push('/playerprofile');
+    }
 
     return (
         <>
@@ -112,7 +118,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Profile'>
+                        <ListItem button key='Profile' onClick = {playerProfile}>
                             <ListItemIcon>
                                 <AccountCircleRounded />
                             </ListItemIcon>
