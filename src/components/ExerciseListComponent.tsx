@@ -1,5 +1,5 @@
 import { Exercise } from '../dtos/exercise';
-import { DataGrid, GridColDef, GridToolbarFilterButton } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridToolbarFilterButton } from '@mui/x-data-grid';
 import { makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/core/styles';
 
@@ -33,7 +33,12 @@ const columns: GridColDef[] = [
     {
         field: 'target',
         headerName: 'Target',
-        flex: 1
+        flex: .5
+    },
+    {
+        field: 'assign',
+        headerName: 'Assign',
+        flex: .5
     }
 ]
 
