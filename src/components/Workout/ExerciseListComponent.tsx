@@ -1,12 +1,6 @@
-<<<<<<< HEAD:src/components/ExerciseListComponent.tsx
-import { Exercise } from '../dtos/exercise';
-import { DataGrid, GridColDef, GridToolbarFilterButton } from '@mui/x-data-grid';
-import { makeStyles, Theme } from '@material-ui/core';
-=======
 import { Exercise } from '../../dtos/exercise';
 import { DataGrid, GridColDef, GridToolbarFilterButton } from '@mui/x-data-grid';
 import { Button, makeStyles, Theme } from '@material-ui/core';
->>>>>>> 37ada3cd226728d882eb988b674d14c4e64ebc77:src/components/Workout/ExerciseListComponent.tsx
 import { createStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
 import { assignExercise } from '../../remote/coach-service';
