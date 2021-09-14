@@ -1,6 +1,6 @@
 import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, useTheme } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { AccountCircleRounded, AttachMoneyRounded, GroupAddRounded, PeopleRounded, SportsRounded } from "@material-ui/icons";
+import { AccountCircleRounded, AttachMoneyRounded, Backspace, GroupAddRounded, Person, PersonAdd, PeopleRounded, SportsRounded } from "@material-ui/icons";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Principal } from "../dtos/principal";
@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 
 interface ISidebarProps {
     authUser: Principal | undefined,
+    setAuthUser: (nextUser: Principal | undefined) => void,
     drawerOpen: boolean,
     setDrawerOpen: (drawerOpen: boolean) => void
 }
@@ -70,6 +71,24 @@ function SidebarComponent(props: ISidebarProps) {
         history.push('/team')
     }
 
+    let handleCoachDashboardClick = () => {
+        history.push('/coachdashboard')
+    }
+
+    let handleLogoutClick = () => {
+        props.setAuthUser(undefined)
+        localStorage.clear()
+        history.push('/')
+    }
+
+    let handleLoginClick = () => {
+        history.push('/login')
+    }
+
+    let handleRegisterClick = () => {
+        history.push('/register')
+    }
+
     const classes = useStyles();
 
     return (
@@ -105,11 +124,17 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Players'>
+                        <ListItem button key='Players' onClick={handleCoachDashboardClick}>
                             <ListItemIcon>
                                 <GroupAddRounded />
                             </ListItemIcon>
                             <ListItemText primary='Players' />
+                        </ListItem>
+                        <ListItem button key='Logout' onClick={handleLogoutClick}>
+                            <ListItemIcon>
+                                <Backspace />
+                            </ListItemIcon>
+                            <ListItemText primary='Logout' />
                         </ListItem>
                     </>
                     : (props.authUser?.role === 'Player') ?
@@ -138,6 +163,12 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Profile' />
                         </ListItem>
+                        <ListItem button key='Logout' onClick={handleLogoutClick}>
+                            <ListItemIcon>
+                                <Backspace />
+                            </ListItemIcon>
+                            <ListItemText primary='Logout' />
+                        </ListItem>
                     </>
                     : (props.authUser?.role === 'Recruiter') ?
                     <>
@@ -153,9 +184,27 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Profile' />
                         </ListItem>
+                        <ListItem button key='Logout' onClick={handleLogoutClick}>
+                            <ListItemIcon>
+                                <Backspace />
+                            </ListItemIcon>
+                            <ListItemText primary='Logout' />
+                        </ListItem>
                     </>
                     :
                     <>
+                        <ListItem button key='Login' onClick={handleLoginClick}>
+                            <ListItemIcon>
+                                <Person />
+                            </ListItemIcon>
+                            <ListItemText primary='Login' />
+                        </ListItem>
+                        <ListItem button key='Register' onClick={handleRegisterClick}>
+                            <ListItemIcon>
+                                <PersonAdd />
+                            </ListItemIcon>
+                            <ListItemText primary='Register' />
+                        </ListItem>
                     </>
 
                     }
