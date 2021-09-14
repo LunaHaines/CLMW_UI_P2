@@ -12,7 +12,12 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import LoginComponent from './components/LoginComponent';
 import MenuIcon from '@material-ui/icons/Menu'
 import SidebarComponent from './components/SidebarComponent';
+
 import WorkoutComponent from './components/workout/WorkoutsComponent';
+import OffersComponent from './components/OffersComponent';
+import CoachTeamComponent from './components/CoachTeamComponent';
+import CoachDashboardComponent from './components/CoachDashboardComponent';
+
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -73,6 +78,12 @@ function App() {
 
   const classes = useStyles();
 
+  if(!authUser)
+  {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) setAuthUser(JSON.parse(loggedInUser));
+  }
+
   return (
     <>
       <Router>
@@ -89,14 +100,17 @@ function App() {
             </Typography>
           </Toolbar>
         </AppBar>
-        <SidebarComponent authUser={authUser} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
+        <SidebarComponent authUser={authUser} setAuthUser={setAuthUser} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
       </div>
       <div className={classes.root}>
           <Switch>
             <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
             <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
+            <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
             <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
+            <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
+		    <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
           </Switch>
         </div>
       </Router>
