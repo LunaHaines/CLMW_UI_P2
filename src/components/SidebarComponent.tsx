@@ -70,6 +70,11 @@ function SidebarComponent(props: ISidebarProps) {
         history.push('/team')
     }
 
+    let handleCoachDashboardClick = () => {
+        history.push('/coachdashboard')
+    }
+
+
     const classes = useStyles();
 
     return (
@@ -105,7 +110,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Players'>
+                        <ListItem button key='Players' onClick={handleCoachDashboardClick}>
                             <ListItemIcon>
                                 <GroupAddRounded />
                             </ListItemIcon>
