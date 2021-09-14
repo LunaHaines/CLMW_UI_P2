@@ -12,11 +12,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import LoginComponent from './components/LoginComponent';
 import MenuIcon from '@material-ui/icons/Menu'
 import SidebarComponent from './components/SidebarComponent';
-<<<<<<< HEAD
 import PlayerProfileComponent from './components/PlayerProfileComponent';
-=======
 import WorkoutComponent from './components/WorkoutsComponent';
->>>>>>> 0f5d2d679a9ad6f1fc411cddf25370d1aefebb5b
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -100,12 +97,8 @@ function App() {
             <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
             <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
-<<<<<<< HEAD
-            <Route path='/playerdashboard' render={() => <></>}/>
             <Route path='/playerprofile' render={() => <PlayerProfileComponent authUser={authUser} setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity}/>}/>
-=======
             <Route path='/workouts' render={() => <WorkoutComponent /> } />
->>>>>>> 0f5d2d679a9ad6f1fc411cddf25370d1aefebb5b
           </Switch>
         </div>
       </Router>

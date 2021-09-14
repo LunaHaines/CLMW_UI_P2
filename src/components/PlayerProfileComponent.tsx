@@ -5,6 +5,7 @@ import { Principal } from "../dtos/principal";
 import { useState } from "react";
 import { AddSkill } from "../remote/player-service";
 import { AddSport } from "../remote/player-service";
+import { AddToProfile } from "../dtos/addToProfile";
 
 interface IPlayerProfileProps{
     authUser: Principal | undefined,
@@ -49,10 +50,13 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
             props.setOpen(true);
         } else {
             try {
-                let persistedSkill = await AddSkill(formData.addedSkill);
-                props.setMessage(`${persistedSkill} successfully added`);
-                props.setSeverity('success');
-                props.setOpen(true);
+                if(props.authUser){
+                    let persistingSkill = new AddToProfile(props.authUser.username, formData.addedSkill);
+                    let persistedSkill = await AddSkill(persistingSkill);
+                    props.setMessage(`${persistedSkill} successfully added`);
+                    props.setSeverity('success');
+                    props.setOpen(true);
+                }
             } catch (e: any) {
                 props.setMessage(e.response.data.message);
                 props.setSeverity('error');
@@ -68,10 +72,13 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
             props.setOpen(true);
         } else {
             try {
-                let persistedSport = await AddSport(formData.addedSport);
-                props.setMessage(`${persistedSport} successfully added`);
-                props.setSeverity('success');
-                props.setOpen(true);
+                if (props.authUser){
+                    let persistingSport = new AddToProfile(props.authUser.username, formData.addedSport);
+                    let persistedSport = await AddSport(persistingSport);
+                    props.setMessage(`${persistedSport} successfully added`);
+                    props.setSeverity('success');
+                    props.setOpen(true);
+                }
             } catch (e: any) {
                 props.setMessage(e.response.data.message);
                 props.setSeverity('error');
@@ -114,7 +121,7 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
                         id='addedSort'
                         name='addedSport'
                         type='text'
-                        placeholder='Enter a Skill to add'
+                        placeholder='Enter a sport to add'
                     />
                 </FormControl>
             </div>
