@@ -34,7 +34,8 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
     const [playerFormData, setFormData] = useState({
         name: "",
         username: "",
-        password: ""
+        password: "",
+        sport: ""
     });
 
     let handleChange = (e: any) => {
@@ -116,6 +117,19 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
                         placeholder='Enter your password'
                     />
                 </FormControl>
+
+                <FormControl margin='normal' fullWidth>
+                    <InputLabel htmlFor='sport'>Sport</InputLabel>
+                    <Input
+                        onChange={ handleChange }
+                        id='sport'
+                        name='sport'
+                        type='text'
+                        placeholder='Enter your sport'
+                    />
+                </FormControl>
+
+
                 <br/><br/>
                 <Button
                     id='register-player-button'
