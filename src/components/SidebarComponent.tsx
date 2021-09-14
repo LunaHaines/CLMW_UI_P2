@@ -66,6 +66,10 @@ function SidebarComponent(props: ISidebarProps) {
         history.push('/workouts')
     }
 
+    let handleCoachTeamClick = () => {
+        history.push('/team')
+    }
+
     const classes = useStyles();
 
     return (
@@ -89,7 +93,7 @@ function SidebarComponent(props: ISidebarProps) {
                     {
                     (props.authUser?.role === 'Coach') ?
                     <>
-                        <ListItem button key='Team'>
+                        <ListItem button key='Team' onClick={handleCoachTeamClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
