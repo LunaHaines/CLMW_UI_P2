@@ -93,7 +93,7 @@ function App() {
             </Typography>
           </Toolbar>
         </AppBar>
-        <SidebarComponent authUser={authUser} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
+        <SidebarComponent authUser={authUser} setAuthUser={setAuthUser} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
       </div>
       <div className={classes.root}>
           <Switch>
@@ -104,8 +104,7 @@ function App() {
             <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
             <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
             <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
-            //FIXME params
-			      <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
+		    <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
           </Switch>
         </div>
       </Router>
