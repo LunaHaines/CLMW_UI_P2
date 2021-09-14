@@ -1,4 +1,4 @@
-import { Backdrop, Button, Fade, makeStyles, Modal, Paper, TextField, Theme, Typography } from "@material-ui/core";
+import { Backdrop, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Fade, makeStyles, Modal, Paper, TextField, Theme, Typography } from "@material-ui/core";
 import { createStyles } from "@material-ui/styles";
 import { useState } from "react";
 import { PositionRequest } from "../dtos/position-request";
@@ -93,7 +93,7 @@ function CoachTeamComponent(props: ICoachTeamProps) {
                         id={playerInfo[0]}
                         key={playerInfo[0]}
                         variant='contained'
-                        color='default'
+                        color='primary'
                         size='small'
                         onClick={() => {showAssignPosition(playerInfo[0])}}
                     >
@@ -102,30 +102,26 @@ function CoachTeamComponent(props: ICoachTeamProps) {
                     <br/><br/>
                 </>)
             })}
-            <Modal
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                className={classes.modal}
-            >
-                <Fade in={open}>
-                    <Paper>
-                        <TextField id='position' label='Position' variant='outlined' onChange={handleChange} />
-                        <Button
-                            id='assign-position'
-                            variant='outlined'
-                            color='default'
-                            size='small'
-                            onClick={assignPosition}
-                        >
-                            <Typography variant='body1'>Assign Role</Typography>
-                        </Button>
-
-                    </Paper>
-                </Fade>
-            </Modal>
-                
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Position</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Assign this player a new position?
+                    </DialogContentText>
+                    <TextField id='position' label='Position' variant='outlined' onChange={handleChange} fullWidth />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} variant='outlined' color='primary'>
+                        Cancel
+                    </Button>
+                    <Button
+                        id='assign-position'
+                        variant='outlined'
+                        color='primary'
+                        onClick={assignPosition}
+                    >Assign</Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }
