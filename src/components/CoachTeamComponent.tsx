@@ -1,4 +1,5 @@
-import { Backdrop, Button, Fade, Modal, Paper, TextField, Typography } from "@material-ui/core";
+import { Backdrop, Button, Fade, makeStyles, Modal, Paper, TextField, Theme, Typography } from "@material-ui/core";
+import { createStyles } from "@material-ui/styles";
 import { useState } from "react";
 import { PositionRequest } from "../dtos/position-request";
 import { Principal } from "../dtos/principal";
@@ -7,6 +8,20 @@ import { assignPlayerPosition, getAuthorizedCoach } from "../remote/coach-servic
 interface ICoachTeamProps {
     authUser: Principal | undefined
 }
+
+const useStyles = makeStyles((theme: Theme) => 
+    createStyles({
+        root: {
+            margin: theme.spacing(12)
+        },
+        modal: {
+            margin: theme.spacing(15)
+        },
+        paper: {
+            justifyContent: 'center'
+        }
+    })
+)
 
 function CoachTeamComponent(props: ICoachTeamProps) {
     const [playerNames, setPlayerNames] = useState(undefined as string[][] | undefined);
@@ -49,6 +64,8 @@ function CoachTeamComponent(props: ICoachTeamProps) {
         } catch (e: any) {
             console.log(e);
             
+        } finally {
+            handleClose();
         }
 
     }
@@ -58,13 +75,15 @@ function CoachTeamComponent(props: ICoachTeamProps) {
     }
 
     let handleChange = (e: any) => {
-        setPositionInput(e.target)
+        setPositionInput(e.target.value)
     }
 
     getPlayers();
 
+    const classes = useStyles();
+
     return (
-        <>
+        <div className={classes.root}>
             {playerNames?.sort(comparePositions).map((playerInfo) => {
                 return (
                 <>
@@ -72,6 +91,7 @@ function CoachTeamComponent(props: ICoachTeamProps) {
                     <Typography variant='h6'>Position: {playerInfo[1]}</Typography>
                     <Button
                         id={playerInfo[0]}
+                        key={playerInfo[0]}
                         variant='contained'
                         color='default'
                         size='small'
@@ -87,6 +107,7 @@ function CoachTeamComponent(props: ICoachTeamProps) {
                 onClose={handleClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
+                className={classes.modal}
             >
                 <Fade in={open}>
                     <Paper>
@@ -105,7 +126,7 @@ function CoachTeamComponent(props: ICoachTeamProps) {
                 </Fade>
             </Modal>
                 
-        </>
+        </div>
     )
 }
 
