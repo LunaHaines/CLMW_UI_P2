@@ -3,6 +3,7 @@ import { DataGrid, GridColDef, GridToolbarFilterButton } from '@mui/x-data-grid'
 import { Button, makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
+import { assignExercise } from '../../remote/coach-service';
 
 interface IExerciseListProps {
     exercises: Exercise[],
@@ -26,7 +27,7 @@ const renderDetailsButton = (params: any) => {
                 size="small"
                 style={{ marginLeft: 16 }}
                 onClick={() => {
-                    assignExercise(params.row.name, coach);
+                    assignExercise(params.row.name, coach);             //Check for throw and alert if not added 
                     alert(`Assigned ${params.row.name} to your team!`);
                 }}
             >
@@ -34,11 +35,6 @@ const renderDetailsButton = (params: any) => {
             </Button>
         </strong>
     )
-}
-
-const assignExercise = (exerciseName: string, coach: String | undefined) => {
-    console.log(coach);
-    console.log(exerciseName);
 }
 
 const columns: GridColDef[] = [
