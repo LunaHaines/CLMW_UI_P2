@@ -2,7 +2,7 @@ import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles
 import { Color } from '@material-ui/lab/Alert'
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { registerNewCoach } from "../remote/coach-service";
+import { registerNewCoach } from "../../remote/coach-service";
 
 interface IRegisterCoachProps {
     open: boolean,

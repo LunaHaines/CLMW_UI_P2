@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
 import { useState } from 'react';
 import { Principal } from './dtos/principal';
-import RegisterComponent from './components/RegisterComponent';
+import RegisterComponent from './components/register/RegisterComponent';
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert'
 import { AppBar, IconButton, Snackbar, Toolbar, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
@@ -15,6 +15,8 @@ import SidebarComponent from './components/SidebarComponent';
 import OffersComponent from './components/OffersComponent';
 import WorkoutComponent from './components/WorkoutsComponent';
 import CoachTeamComponent from './components/CoachTeamComponent';
+import CoachDashboardComponent from './components/CoachDashboardComponent';
+
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -98,9 +100,12 @@ function App() {
             <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
             <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
+            <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
             <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
-            <Route path='/workouts' render={() => <WorkoutComponent /> } />
+            <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
             <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
+            //FIXME params
+			      <Route path='/coachdashboard' render={() => <CoachDashboardComponent currentUser={authUser} sport="Testing" coachUsername="MyTestUser" /> } />
           </Switch>
         </div>
       </Router>
