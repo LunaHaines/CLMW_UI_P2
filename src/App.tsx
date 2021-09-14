@@ -16,6 +16,7 @@ import OffersComponent from './components/OffersComponent';
 import WorkoutComponent from './components/Workout/WorkoutsComponent';
 import CoachTeamComponent from './components/CoachTeamComponent';
 import CoachDashboardComponent from './components/CoachDashboardComponent';
+import PlayerTeamComponent from './components/PlayerTeamComponent';
 
 
 function Alert(props: AlertProps) {
@@ -110,7 +111,8 @@ function App() {
             <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
             <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
             <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
-		    <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
+		        <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
+            <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} /> } />
           </Switch>
         </div>
       </Router>
