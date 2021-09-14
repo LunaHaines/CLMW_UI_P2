@@ -8,7 +8,8 @@ export const coachLogin = async (user: Credentials) => {
         throw resp.data;
     }
 
-    localStorage.setItem('api-token', resp.headers['Authorization']);
+    localStorage.setItem('api-token', resp.headers['authorization']);
+    localStorage.setItem('user', JSON.stringify(resp.data));
 
     return resp.data
 }
@@ -20,7 +21,8 @@ export const recruiterLogin = async (user: Credentials) => {
         throw resp.data;
     }
 
-    localStorage.setItem('api-token', resp.headers['Authorization']);
+    localStorage.setItem('api-token', resp.headers['authorization']);
+    localStorage.setItem('user', JSON.stringify(resp.data));
 
     return resp.data
 } 
@@ -32,7 +34,8 @@ export const playerLogin = async (user: Credentials) => {
         throw resp.data;
     }
 
-    localStorage.setItem('api-token', resp.headers['Authorization']);
+    localStorage.setItem('api-token', resp.headers['authorization']);
+    localStorage.setItem('user', JSON.stringify(resp.data));
 
     return resp.data;
 } 

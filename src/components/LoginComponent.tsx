@@ -76,7 +76,7 @@ function LoginComponent(props: ILoginProps) {
                 history.push('/coachdashboard')
             } catch (e: any) {
                 props.setSeverity('error');
-                props.setMessage(e.response.data.message);
+                props.setMessage(e.response?.data.message);
                 props.setOpen(true);
             }
         }else if (formData.role === 'recruiter'){

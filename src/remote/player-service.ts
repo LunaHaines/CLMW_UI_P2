@@ -1,7 +1,9 @@
+import { PlayerRequest } from "../dtos/player-request";
 import { RegisterPlayerComponent } from "../dtos/register-player-request";
 import { Principal } from "../dtos/principal";
 import { teamManagerClient } from "./team-manager-client";
 import { AddToProfile } from "../dtos/addToProfile";
+import { Offer } from "../dtos/offer";
 
     export const RegisterNewPlayer = async (newPlayer: RegisterPlayerComponent) => {
 
@@ -34,4 +36,34 @@ import { AddToProfile } from "../dtos/addToProfile";
         }
 
         return resp.data.sports[resp.data.sports.length - 1];
+    }
+
+    export const getAllPlayers = async (sport: String) => {
+
+        let resp = await teamManagerClient.get('/players/' + sport);
+
+        if (resp.status >= 400 && resp.status <= 599) {
+            throw resp.data;
+        }
+        
+        return resp.data;
+    }
+
+    export const getAuthorizedPlayer = async (authUsername: string) => {
+        let resp = await teamManagerClient.get(`/players/user/${authUsername}`);
+
+        if (resp.status >= 400 && resp.status <= 599){
+            throw resp.data;
+        }
+
+        return resp.data;
+    }
+
+    export const modifyOffer = async (coachUsername: String, playerUsername: String, type: String) => {
+
+        let resp = await teamManagerClient.put('/players/' + type, {coachUsername, playerUsername});
+
+        if (resp.status >= 400 && resp.status <= 599) {
+            throw resp.data;
+        }
     }

@@ -1,6 +1,6 @@
 import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, useTheme } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { AccountCircleRounded, GroupAddRounded, PeopleRounded, SportsRounded } from "@material-ui/icons";
+import { AccountCircleRounded, AttachMoneyRounded, Backspace, GroupAddRounded, Person, PersonAdd, PeopleRounded, SportsRounded } from "@material-ui/icons";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Principal } from "../dtos/principal";
@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 
 interface ISidebarProps {
     authUser: Principal | undefined,
+    setAuthUser: (nextUser: Principal | undefined) => void,
     drawerOpen: boolean,
     setDrawerOpen: (drawerOpen: boolean) => void
 }
@@ -58,8 +59,38 @@ function SidebarComponent(props: ISidebarProps) {
         props.setDrawerOpen(false);
     }
 
+    let handleOffersClick = () => {
+        history.push('/offers')
+    }
+
     let handleCoachWorkoutClick = () => {
         history.push('/workouts')
+    }
+
+    let handleCoachTeamClick = () => {
+        history.push('/team')
+    }
+
+    let handleCoachDashboardClick = () => {
+        history.push('/coachdashboard')
+    }
+
+    let handleLogoutClick = () => {
+        props.setAuthUser(undefined)
+        localStorage.clear()
+        history.push('/')
+    }
+
+    let handleLoginClick = () => {
+        history.push('/login')
+    }
+
+    let handleRegisterClick = () => {
+        history.push('/register')
+    }
+
+    let handlePlayerTeamClick = () => {
+        history.push('/playerteam')
     }
 
     const classes = useStyles();
@@ -89,7 +120,7 @@ function SidebarComponent(props: ISidebarProps) {
                     {
                     (props.authUser?.role === 'Coach') ?
                     <>
-                        <ListItem button key='Team'>
+                        <ListItem button key='Team' onClick={handleCoachTeamClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
@@ -101,20 +132,32 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Players'>
+                        <ListItem button key='Players' onClick={handleCoachDashboardClick}>
                             <ListItemIcon>
                                 <GroupAddRounded />
                             </ListItemIcon>
                             <ListItemText primary='Players' />
                         </ListItem>
+                        <ListItem button key='Logout' onClick={handleLogoutClick}>
+                            <ListItemIcon>
+                                <Backspace />
+                            </ListItemIcon>
+                            <ListItemText primary='Logout' />
+                        </ListItem>
                     </>
                     : (props.authUser?.role === 'Player') ?
                     <>
-                        <ListItem button key='Teams'>
+                        <ListItem button key='Offers' onClick={handleOffersClick}>
+                            <ListItemIcon>
+                                <AttachMoneyRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Offers' />
+                        </ListItem>
+                        <ListItem button key='Team' onClick={handlePlayerTeamClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
-                            <ListItemText primary='Teams' />
+                            <ListItemText primary='Team' />
                         </ListItem>
                         <ListItem button key='Workouts'>
                             <ListItemIcon>
@@ -127,6 +170,12 @@ function SidebarComponent(props: ISidebarProps) {
                                 <AccountCircleRounded />
                             </ListItemIcon>
                             <ListItemText primary='Profile' />
+                        </ListItem>
+                        <ListItem button key='Logout' onClick={handleLogoutClick}>
+                            <ListItemIcon>
+                                <Backspace />
+                            </ListItemIcon>
+                            <ListItemText primary='Logout' />
                         </ListItem>
                     </>
                     : (props.authUser?.role === 'Recruiter') ?
@@ -143,9 +192,27 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Profile' />
                         </ListItem>
+                        <ListItem button key='Logout' onClick={handleLogoutClick}>
+                            <ListItemIcon>
+                                <Backspace />
+                            </ListItemIcon>
+                            <ListItemText primary='Logout' />
+                        </ListItem>
                     </>
                     :
                     <>
+                        <ListItem button key='Login' onClick={handleLoginClick}>
+                            <ListItemIcon>
+                                <Person />
+                            </ListItemIcon>
+                            <ListItemText primary='Login' />
+                        </ListItem>
+                        <ListItem button key='Register' onClick={handleRegisterClick}>
+                            <ListItemIcon>
+                                <PersonAdd />
+                            </ListItemIcon>
+                            <ListItemText primary='Register' />
+                        </ListItem>
                     </>
 
                     }
