@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
 import { useState } from 'react';
 import { Principal } from './dtos/principal';
-import RegisterComponent from './components/RegisterComponent';
+import RegisterComponent from './components/register/RegisterComponent';
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert'
 import { AppBar, IconButton, Snackbar, Toolbar, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import LoginComponent from './components/LoginComponent';
 import MenuIcon from '@material-ui/icons/Menu'
 import SidebarComponent from './components/SidebarComponent';
-import WorkoutComponent from './components/Workout/WorkoutsComponent';
+import WorkoutComponent from './components/workout/WorkoutsComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;

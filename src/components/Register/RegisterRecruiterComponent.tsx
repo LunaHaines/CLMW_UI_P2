@@ -2,7 +2,7 @@ import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
-import { RegisterNewRecruiter } from '../remote/recruiter-service';
+import { RegisterNewRecruiter } from '../../remote/recruiter-service';
 
 interface IRegisterRecruiterProps{
     open: boolean,
