@@ -105,7 +105,7 @@ function App() {
             <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
             <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
             //FIXME params
-			      <Route path='/coachdashboard' render={() => <CoachDashboardComponent currentUser={authUser} sport="Testing" coachUsername="MyTestUser" /> } />
+			      <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
           </Switch>
         </div>
       </Router>
