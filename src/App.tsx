@@ -77,6 +77,12 @@ function App() {
 
   const classes = useStyles();
 
+  if(!authUser)
+  {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) setAuthUser(JSON.parse(loggedInUser));
+  }
+
   return (
     <>
       <Router>
@@ -93,7 +99,7 @@ function App() {
             </Typography>
           </Toolbar>
         </AppBar>
-        <SidebarComponent authUser={authUser} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
+        <SidebarComponent authUser={authUser} setAuthUser={setAuthUser} drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
       </div>
       <div className={classes.root}>
           <Switch>
@@ -104,8 +110,7 @@ function App() {
             <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
             <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
             <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
-            //FIXME params
-			      <Route path='/coachdashboard' render={() => <CoachDashboardComponent currentUser={authUser} sport="Testing" coachUsername="MyTestUser" /> } />
+		    <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
           </Switch>
         </div>
       </Router>
