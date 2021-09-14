@@ -2,9 +2,9 @@ import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
-import { RegisterNewRecruiter } from '../remote/recruiter-service';
+import { RegisterNewPlayer } from '../../remote/player-service';
 
-interface IRegisterRecruiterProps{
+interface IRegisterPlayerProps{
     open: boolean,
     setOpen: (openValue: boolean) => void,
     message: string,
@@ -27,26 +27,27 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     }))
 
-function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
+function RegisterPlayerComponent (props: IRegisterPlayerProps){
 
     const history = useHistory();
 
-    const [recruiterFormData, setFormData] = useState({
+    const [playerFormData, setFormData] = useState({
         name: "",
         username: "",
-        password: ""
+        password: "",
+        sport: ""
     });
 
     let handleChange = (e: any) => {
         const { name, value } = e.target;
         console.log(e.target);
-        setFormData({...recruiterFormData, [name]: value});
-        console.log(recruiterFormData);
+        setFormData({...playerFormData, [name]: value});
+        console.log(playerFormData);
     }
 
     let isFormValid = () => {
-        console.log(recruiterFormData);
-        for (const [value] of Object.entries(recruiterFormData)){
+        console.log(playerFormData);
+        for (const [key,value] of Object.entries(playerFormData)){
             console.log(value);
             if (!value){
                 console.log(value);
@@ -66,7 +67,7 @@ function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
         }
 
         try {
-            await RegisterNewRecruiter(recruiterFormData);
+            await RegisterNewPlayer(playerFormData);
             props.setMessage('Successfully registered!');
             props.setSeverity('success');
             props.setOpen(true);
@@ -82,7 +83,7 @@ function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
 
     return (
         <>
-            <Typography align='center' variant='h3'>Register as a Recruiter</Typography>
+            <Typography align='center' variant='h3'>Register as a Player</Typography>
             <div className={classes.root}>
                 <FormControl margin='normal' fullWidth>
                     <InputLabel htmlFor='name'>Your Name</InputLabel>
@@ -116,6 +117,19 @@ function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
                         placeholder='Enter your password'
                     />
                 </FormControl>
+
+                <FormControl margin='normal' fullWidth>
+                    <InputLabel htmlFor='sport'>Sport</InputLabel>
+                    <Input
+                        onChange={ handleChange }
+                        id='sport'
+                        name='sport'
+                        type='text'
+                        placeholder='Enter your sport'
+                    />
+                </FormControl>
+
+
                 <br/><br/>
                 <Button
                     id='register-player-button'
@@ -129,4 +143,4 @@ function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
     )
 }
 
-export default RegisterRecruiterComponent;
+export default RegisterPlayerComponent;
