@@ -77,6 +77,12 @@ function App() {
 
   const classes = useStyles();
 
+  if(!authUser)
+  {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) setAuthUser(JSON.parse(loggedInUser));
+  }
+
   return (
     <>
       <Router>
