@@ -1,6 +1,6 @@
 import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, useTheme } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { AccountCircleRounded, AttachMoneyRounded, Backspace, GroupAddRounded, PeopleRounded, SportsRounded } from "@material-ui/icons";
+import { AccountCircleRounded, AttachMoneyRounded, Backspace, GroupAddRounded, Person, PersonAdd, PeopleRounded, SportsRounded } from "@material-ui/icons";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Principal } from "../dtos/principal";
@@ -81,6 +81,13 @@ function SidebarComponent(props: ISidebarProps) {
         history.push('/')
     }
 
+    let handleLoginClick = () => {
+        history.push('/login')
+    }
+
+    let handleRegisterClick = () => {
+        history.push('/register')
+    }
 
     const classes = useStyles();
 
@@ -186,6 +193,18 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     :
                     <>
+                        <ListItem button key='Login' onClick={handleLoginClick}>
+                            <ListItemIcon>
+                                <Person />
+                            </ListItemIcon>
+                            <ListItemText primary='Login' />
+                        </ListItem>
+                        <ListItem button key='Register' onClick={handleRegisterClick}>
+                            <ListItemIcon>
+                                <PersonAdd />
+                            </ListItemIcon>
+                            <ListItemText primary='Register' />
+                        </ListItem>
                     </>
 
                     }
