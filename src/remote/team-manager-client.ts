@@ -6,6 +6,6 @@ export const teamManagerClient = axios.create({
     headers: {
         'Content-Type': 'application/json',
         // store the api-token in local storage, so that it's accessible here
-        'Authorization': localStorage.getItem('api-token')
+        'authorization': localStorage.getItem('api-token')
     }
 });
