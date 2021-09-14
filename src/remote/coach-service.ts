@@ -47,3 +47,15 @@ export const assignPlayerPosition = async (assignment: PositionRequest) => {
     }
     
 }
+
+export const getPlayerTeam = async (playerUsername: string) => {
+
+    let resp = await teamManagerClient.get(`/coach/player/${playerUsername}`);
+
+    if (resp.status >= 400 && resp.status <= 599) {
+        throw resp.data;
+    }
+
+    return resp.data;
+    
+}
