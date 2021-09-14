@@ -23,21 +23,22 @@ const useStyles = makeStyles((theme: Theme) =>
 function CoachDashboardComponent(props: ICoachDashboardProps) {
 
     const classes = useStyles();
-    const [players, setPlayers] = useState([]);
+    const [players, setPlayers] = useState(undefined);
 
     let modifyOfferOnClick = async (coachUsername: string, playerUsername: string, type: string) => {
         try {
             // await modifyOffer({coachUsername: props.currentUser?.username!, playerUsername: playerUsername}, type);
             await modifyOffer(coachUsername, playerUsername, type); //FIXME
+            setPlayers(undefined);
         } catch (e: any){
         }
     }
-
-    useEffect(() => {
-         let getPlayers = async () => {
+     let getPlayers = async () => {
+         if(!players){
              try{
              //Get all players that have the same sport as the Coach
               let playersRequest = await getAllPlayers(props.sport);
+              playersRequest = playersRequest.filter( (player:any) => (player.teamName === null) )
               //Filter the player objects into username/name.
               //If they have an active offer from the coach, allow the coach to cancel the offer.
               //Otherwise, allow them to extend an offer.
@@ -73,8 +74,9 @@ function CoachDashboardComponent(props: ICoachDashboardProps) {
                  console.log(err);
               }
           }
-          getPlayers();
-    }, []);
+      }
+
+     getPlayers();
 
     return(
             <>
