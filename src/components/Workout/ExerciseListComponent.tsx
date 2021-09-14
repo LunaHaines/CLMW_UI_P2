@@ -1,20 +1,23 @@
-import { Exercise } from '../dtos/exercise';
-import { DataGrid, GridApi, GridColDef, GridToolbarFilterButton } from '@mui/x-data-grid';
+import { Exercise } from '../../dtos/exercise';
+import { DataGrid, GridColDef, GridToolbarFilterButton } from '@mui/x-data-grid';
 import { Button, makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/core/styles';
+import { useState } from 'react';
 
 interface IExerciseListProps {
-    exercises: Exercise[]
+    exercises: Exercise[],
+    coach: string | undefined
 }
 
-interface Data {
-    bodyPart: string,
-    equipment: string,
-    target: string,
-    name: string
-}
+// interface Data {                     //Not needed?
+//     bodyPart: string,
+//     equipment: string,
+//     target: string,
+//     name: string
+// }
 
 const renderDetailsButton = (params: any) => {
+
     return (
         <strong>
             <Button
@@ -23,16 +26,18 @@ const renderDetailsButton = (params: any) => {
                 size="small"
                 style={{ marginLeft: 16 }}
                 onClick={() => {
-                    assignExercise(params.row.col1)
+                    assignExercise(params.row.name, coach);
+                    alert(`Assigned ${params.row.name} to your team!`);
                 }}
             >
-                More Info
+                ASSIGN
             </Button>
         </strong>
     )
 }
 
-const assignExercise = (exerciseName: string) => {
+const assignExercise = (exerciseName: string, coach: String | undefined) => {
+    console.log(coach);
     console.log(exerciseName);
 }
 
@@ -74,9 +79,13 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
+var coach: string;
+
 function ExerciseListComponent(props: IExerciseListProps) {
     const rows = props.exercises;
     const classes = useStyles();
+    
+    coach = useState(props.coach as string)[0];
     
     return (
         <>
