@@ -12,7 +12,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import LoginComponent from './components/LoginComponent';
 import MenuIcon from '@material-ui/icons/Menu'
 import SidebarComponent from './components/SidebarComponent';
-import WorkoutComponent from './components/WorkoutsComponent';
+import WorkoutComponent from './components/Workout/WorkoutsComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -96,7 +96,7 @@ function App() {
             <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
             <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
-            <Route path='/workouts' render={() => <WorkoutComponent /> } />
+            <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
           </Switch>
         </div>
       </Router>
