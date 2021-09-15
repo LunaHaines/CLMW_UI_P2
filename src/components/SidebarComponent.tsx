@@ -91,7 +91,15 @@ function SidebarComponent(props: ISidebarProps) {
         history.push('/register')
     }
 
+    let handlePlayerTeamClick = () => {
+        history.push('/playerteam')
+    }
+
     const classes = useStyles();
+
+    let playerProfile = () => {
+        history.push('/playerprofile');
+    }
 
     return (
         <>
@@ -147,11 +155,11 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Offers' />
                         </ListItem>
-                        <ListItem button key='Teams'>
+                        <ListItem button key='Team' onClick={handlePlayerTeamClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
-                            <ListItemText primary='Teams' />
+                            <ListItemText primary='Team' />
                         </ListItem>
                         <ListItem button key='Workouts'>
                             <ListItemIcon>
@@ -159,7 +167,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Profile'>
+                        <ListItem button key='Profile' onClick = {playerProfile}>
                             <ListItemIcon>
                                 <AccountCircleRounded />
                             </ListItemIcon>
