@@ -1,12 +1,22 @@
 import { Backdrop, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Fade, makeStyles, Modal, Paper, TextField, Theme, Typography } from "@material-ui/core";
+import { Color } from '@material-ui/lab/Alert';
 import { createStyles } from "@material-ui/styles";
 import { useState } from "react";
 import { PositionRequest } from "../dtos/position-request";
 import { Principal } from "../dtos/principal";
 import { assignPlayerPosition, getAuthorizedCoach } from "../remote/coach-service";
+import { Offer } from "../dtos/offer";
+import { removePlayer } from "../remote/coach-service";
 
 interface ICoachTeamProps {
     authUser: Principal | undefined
+
+    errorOpen: boolean,
+    setErrorOpen: (openValue: boolean) => void,
+    errorMessage: string,
+    setErrorMessage: (newMessage: string) => void,
+    errorSeverity: Color | undefined,
+    setErrorSeverity: (newSeverity: Color | undefined) => void
 }
 
 const useStyles = makeStyles((theme: Theme) => 
@@ -28,6 +38,7 @@ function CoachTeamComponent(props: ICoachTeamProps) {
     const [selectedPlayerUsername, setSelectedPlayerUsername] = useState('');
     const [positionInput, setPositionInput] = useState('');
     const [open, setOpen] = useState(false);
+    const [alertOpen, setAlertOpen] = useState(false);
 
     let getPlayers = async () => {
         if (props.authUser) {
@@ -70,6 +81,33 @@ function CoachTeamComponent(props: ICoachTeamProps) {
 
     }
 
+    //Remove Dialog
+
+    let promptRemove = async (playerUsername: string) => {
+        setAlertOpen(true);
+        setSelectedPlayerUsername(playerUsername);
+    }
+
+    let handleConfirm = async (e: any) => {
+        if(props.authUser){
+            let remove: Offer = new Offer(props.authUser.username, selectedPlayerUsername);
+            try{
+                await removePlayer(remove);
+            } catch(e: any) {
+                props.setErrorOpen(true);
+                props.setErrorSeverity('error');
+                props.setErrorMessage(e.response?.data.message);
+            }
+
+        }
+    }
+
+    let handleAlertClose = () => {
+        setAlertOpen(false);
+    }
+
+    //Position Dialog
+
     let handleClose = () => {
         setOpen(false);
     }
@@ -99,9 +137,41 @@ function CoachTeamComponent(props: ICoachTeamProps) {
                     >
                         <Typography variant='body1'>assign position</Typography>
                     </Button>
+                    <Button
+                        id={playerInfo[0]}
+                        key={playerInfo[0]}
+                        variant='outlined'
+                        color='secondary'
+                        size='small'
+                        onClick={() => {promptRemove(playerInfo[0])}}
+                    >
+                        <Typography variant='body1'>Remove Player</Typography>
+                    </Button>
                     <br/><br/>
                 </>)
             })}
+                <div>
+      
+            <Dialog open={alertOpen} onClose={handleAlertClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description">
+                <DialogTitle id="alert-dialog-title">{"Remove Player?"}</DialogTitle>
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    Are you sure you want to remove this player from the team?
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                    Cancel
+                </Button>
+                <Button onClick={handleConfirm} color="secondary" variant="outlined" autoFocus>
+                    Confirm
+                </Button>
+                </DialogActions>
+            </Dialog>
+            </div>
+
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Position</DialogTitle>
                 <DialogContent>
@@ -123,6 +193,7 @@ function CoachTeamComponent(props: ICoachTeamProps) {
                 </DialogActions>
             </Dialog>
         </div>
+        
     )
 }
 

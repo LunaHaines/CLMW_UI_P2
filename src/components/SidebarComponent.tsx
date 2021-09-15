@@ -6,6 +6,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Principal } from "../dtos/principal";
 import clsx from 'clsx';
 import { useHistory } from "react-router";
+import { teamManagerClient } from "../remote/team-manager-client";
+import axios from "axios";
 
 interface ISidebarProps {
     authUser: Principal | undefined,
@@ -76,9 +78,12 @@ function SidebarComponent(props: ISidebarProps) {
     }
 
     let handleLogoutClick = () => {
-        props.setAuthUser(undefined)
-        localStorage.clear()
-        history.push('/')
+        props.setAuthUser(undefined);
+        localStorage.clear();
+        // axios.delete()
+        // teamManagerCleanup();
+        teamManagerClient.defaults.headers.common["authorization"] = null
+        history.push('/');
     }
 
     let handleLoginClick = () => {

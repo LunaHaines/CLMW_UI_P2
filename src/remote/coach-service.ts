@@ -19,12 +19,29 @@ export const assignExercise = async (exerciseName: string, coach: String | undef
     if (resp.status >= 400 && resp.status <= 599) {
         throw resp.data;
     }
+
+}
+
+export const removePlayer = async (removeOffer: Offer) => {
+    let resp = await teamManagerClient.patch(`/coach/team/remove`, removeOffer);
+
+    if (resp.status >= 400 && resp.status <= 599) {
+        throw resp.data;
+    }
+
+    return resp.data;
+
 }
 
 export const acceptOffer = async (acceptedOffer: Offer) => {
 
     let resp = await teamManagerClient.put('/coach/team', acceptedOffer);
 
+    if (resp.status >= 400 && resp.status <= 599) {
+        throw resp.data;
+    }
+
+    return resp.data;
 
 }
 

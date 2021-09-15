@@ -109,7 +109,7 @@ function App() {
             <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
             <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
-            <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
+            <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} errorOpen={open} setErrorOpen={setOpen} setErrorMessage={setMessage} errorMessage={message} setErrorSeverity={setSeverity} errorSeverity={severity} /> } />
 		    <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
           </Switch>
         </div>
