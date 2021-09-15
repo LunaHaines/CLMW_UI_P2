@@ -17,6 +17,7 @@ import WorkoutComponent from './components/Workout/WorkoutsComponent';
 import CoachTeamComponent from './components/CoachTeamComponent';
 import CoachDashboardComponent from './components/CoachDashboardComponent';
 import PlayerTeamComponent from './components/PlayerTeamComponent';
+import RecruiterDashboard from './components/RecruiterDashboardComponent';
 
 
 function Alert(props: AlertProps) {
@@ -113,6 +114,7 @@ function App() {
             <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
 		        <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
             <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} /> } />
+            <Route path='/recruiterdashboard' render={() => <RecruiterDashboard /> } />
           </Switch>
         </div>
       </Router>
