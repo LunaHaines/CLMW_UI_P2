@@ -76,7 +76,7 @@ function RecruiterDashboard(props: IRecruiterDashboardProps) {
             {players?.map((p) => {
                 return (
                     <>
-                        <Typography variant='body1'><b>{index}</b> <b>Name:</b> {p.name} | <b>Username:</b> {p.username} | <b>Sport:</b> {p.sport ? p.sport : 'none'} | <b>Team:</b> {p.teamName ? p.teamName : 'none'}</Typography>
+                        <Typography variant='body1'><b>{index}</b> <b>Name:</b> {p.name} | <b>Username:</b> {p.username} | <b>Sport:</b> {p.sports ? p.sports.map((s) => {return (`${s}, `)}) : 'none'} | <b>Team:</b> {p.teamName ? p.teamName : 'none'}</Typography>
                         <Button
                             variant="contained"
                             color="primary"
