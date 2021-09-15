@@ -95,6 +95,10 @@ function SidebarComponent(props: ISidebarProps) {
 
     const classes = useStyles();
 
+    let playerProfile = () => {
+        history.push('/playerprofile');
+    }
+
     return (
         <>
             <Drawer variant='permanent' className={clsx(classes.drawer, {
@@ -161,7 +165,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Profile'>
+                        <ListItem button key='Profile' onClick = {playerProfile}>
                             <ListItemIcon>
                                 <AccountCircleRounded />
                             </ListItemIcon>
