@@ -115,7 +115,7 @@ function App() {
             <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
 		        <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
             <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} /> } />
-            <Route path='/recruiterdashboard' render={() => <RecruiterDashboard /> } />
+            <Route path='/recruiterdashboard' render={() => <RecruiterDashboard setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity} /> } />
           </Switch>
         </div>
       </Router>
