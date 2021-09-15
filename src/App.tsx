@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
 import { useState } from 'react';
 import { Principal } from './dtos/principal';
-import RegisterComponent from './components/register/RegisterComponent';
+import RegisterComponent from './components/Register/RegisterComponent';
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert'
 import { AppBar, IconButton, Snackbar, Toolbar, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
@@ -17,7 +17,7 @@ import OffersComponent from './components/OffersComponent';
 import CoachTeamComponent from './components/CoachTeamComponent';
 import CoachDashboardComponent from './components/CoachDashboardComponent';
 import PlayerTeamComponent from './components/PlayerTeamComponent';
-import WorkoutComponent from './components/workout/WorkoutsComponent';
+import WorkoutComponent from './components/Workout/WorkoutsComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
