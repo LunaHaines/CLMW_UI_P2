@@ -12,12 +12,12 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import LoginComponent from './components/LoginComponent';
 import MenuIcon from '@material-ui/icons/Menu'
 import SidebarComponent from './components/SidebarComponent';
-
-import WorkoutComponent from './components/workout/WorkoutsComponent';
+import PlayerProfileComponent from './components/PlayerProfileComponent';
 import OffersComponent from './components/OffersComponent';
 import CoachTeamComponent from './components/CoachTeamComponent';
 import CoachDashboardComponent from './components/CoachDashboardComponent';
-
+import PlayerTeamComponent from './components/PlayerTeamComponent';
+import WorkoutComponent from './components/workout/WorkoutsComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -107,10 +107,12 @@ function App() {
             <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
             <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
-            <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
+            <Route path='/playerprofile' render={() => <PlayerProfileComponent authUser={authUser} setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity}/>}/>
             <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
+            <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
             <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
-		    <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
+		        <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
+            <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} /> } />
           </Switch>
         </div>
       </Router>
