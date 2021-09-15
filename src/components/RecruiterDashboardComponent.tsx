@@ -1,9 +1,10 @@
 import { Button, createStyles, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles, TextField, Theme, Typography } from "@material-ui/core";
+import { Color } from "@material-ui/lab/Alert";
 import { DataGrid, GridColDef, GridToolbarFilterButton } from "@mui/x-data-grid";
 import { useState } from "react";
 import { ExpPlayer } from "../dtos/expanded-player";
 import { Player } from "../dtos/player";
-import { recruitAllPlayers } from "../remote/player-service";
+import { rateSkill, recruitAllPlayers } from "../remote/player-service";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -13,7 +14,13 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-function RecruiterDashboard() {
+interface IRecruiterDashboardProps {
+    setOpen: (openValue: boolean) => void,
+    setMessage: (newMessage: string) => void,
+    setSeverity: (newSeverity: Color | undefined) => void
+}
+
+function RecruiterDashboard(props: IRecruiterDashboardProps) {
     const [players, setPlayers] = useState(undefined as ExpPlayer[] | undefined);
     const [selectedPlayer, setSelectedPlayer] = useState(undefined as ExpPlayer | undefined);
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -46,8 +53,18 @@ function RecruiterDashboard() {
         setRating(e.target.value);
     }
 
-    let rateSkill = () => {
-        // add api call here
+    let ratePlayerSkill = async () => {
+        try {
+            if (selectedPlayer) {
+                await rateSkill(selectedPlayer.username, skill, rating);
+                let response = await recruitAllPlayers();
+                setPlayers(response);
+            }
+        } catch (e: any) {
+            
+        } finally {
+            handleClose();
+        }
     }
 
     const classes = useStyles();
@@ -93,7 +110,7 @@ function RecruiterDashboard() {
                         id=''
                         variant='outlined'
                         color='primary'
-                        onClick={rateSkill}
+                        onClick={ratePlayerSkill}
                     >Rate</Button>
                 </DialogActions>
             </Dialog>
