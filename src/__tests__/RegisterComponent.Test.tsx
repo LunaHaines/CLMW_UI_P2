@@ -1,8 +1,6 @@
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import React from "react";
-import RegisterComponent from "../components/register/RegisterComponent";
-import RegisterPlayerComponent from "../components/register/RegisterPlayerComponent";
-
+import RegisterComponent from '../components/Register/RegisterComponent'
 describe('RegisterComponent Test Suite', () => {
 
     afterEach(() => {
@@ -39,13 +37,13 @@ describe('RegisterComponent Test Suite', () => {
         const setFormType = jest.spyOn(React, 'useState');
 
         // set up shallow wrapper for RegisterComponent
-        const wrapper = shallow(<RegisterComponent open={mockOpen} setOpen={mockSetOpenFn} message={mockMessage} setMessage={mockSetMessageFn} severity={mockSeverity} setSeverity={mockSetSeverityFn} />);
+        const wrapper = mount(<RegisterComponent open={mockOpen} setOpen={mockSetOpenFn} message={mockMessage} setMessage={mockSetMessageFn} severity={mockSeverity} setSeverity={mockSetSeverityFn} />);
 
         let playerButtonWrapper = wrapper.find('#form-type-player');
 
         playerButtonWrapper.simulate('click');
 
-        expect(wrapper.contains(<RegisterPlayerComponent open={mockOpen} setOpen={mockSetOpenFn} message={mockMessage} setMessage={mockSetMessageFn} severity={mockSeverity} setSeverity={mockSetSeverityFn} />));
+            
     })
 
 })
