@@ -85,7 +85,7 @@ function OffersComponent(props: IOffersProps) {
                     )
                 })
                 :
-                <Typography variant='h5'>You don't have any current offers</Typography>
+                <Typography variant='h4'>You don't have any current offers</Typography>
                 :
                 <Typography variant='h5'>.</Typography>
             }
