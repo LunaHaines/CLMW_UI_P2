@@ -27,7 +27,6 @@ function CoachDashboardComponent(props: ICoachDashboardProps) {
 
     let modifyOfferOnClick = async (coachUsername: string, playerUsername: string, type: string) => {
         try {
-            // await modifyOffer({coachUsername: props.currentUser?.username!, playerUsername: playerUsername}, type);
             await modifyOffer(coachUsername, playerUsername, type); //FIXME
             setPlayers(undefined);
         } catch (e: any){
