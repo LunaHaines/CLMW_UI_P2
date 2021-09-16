@@ -66,7 +66,7 @@ function RecruiterDashboard(props: IRecruiterDashboardProps) {
         } catch (e: any) {
             props.setOpen(true);
             props.setMessage(e.response?.data.message);
-            props.setMessage('error');
+            props.setSeverity('error');
         } finally {
             handleClose();
         }
@@ -98,10 +98,12 @@ function RecruiterDashboard(props: IRecruiterDashboardProps) {
                 <DialogContent>
                     <DialogContentText>
                         {selectedPlayer?.skills.map((s) => {
+                            return (
                             <>
                                 <b>skill:</b> {s.skill} <b>rating:</b> {s.rating}
                                 <br/>
                             </>
+                            )
                         })}
                         Assign this player a new rating?
                     </DialogContentText>
