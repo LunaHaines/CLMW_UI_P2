@@ -15,6 +15,7 @@ export const registerNewCoach = async (newCoach: RegisterCoachRequest) => {
 
 export const assignExercise = async (exerciseName: string, coach: String | undefined) => {
     let resp = await teamManagerClient.patch(`/coach/assign/${coach}`, exerciseName);
+
     if (resp.status >= 400 && resp.status <= 599) {
         throw resp.data;
     }

@@ -14,11 +14,11 @@ import MenuIcon from '@material-ui/icons/Menu'
 import SidebarComponent from './components/SidebarComponent';
 import PlayerProfileComponent from './components/PlayerProfileComponent';
 import OffersComponent from './components/OffersComponent';
-import WorkoutComponent from './components/Workout/WorkoutsComponent';
 import CoachTeamComponent from './components/CoachTeamComponent';
 import CoachDashboardComponent from './components/CoachDashboardComponent';
 import PlayerTeamComponent from './components/PlayerTeamComponent';
 import RecruiterDashboard from './components/RecruiterDashboardComponent';
+import WorkoutComponent from './components/Workout/WorkoutsComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -111,7 +111,6 @@ function App() {
             <Route path='/playerprofile' render={() => <PlayerProfileComponent authUser={authUser} setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity}/>}/>
             <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
             <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
-            <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
             <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
 		        <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
             <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} /> } />
