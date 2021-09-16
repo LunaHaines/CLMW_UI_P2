@@ -114,7 +114,7 @@ function App() {
             <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} errorOpen={false} setErrorOpen={setOpen} errorMessage={message} setErrorMessage={setMessage} errorSeverity={severity} setErrorSeverity={setSeverity} /> } />
 		        <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
             <Route path='/playerprofile' render={() => <PlayerProfileComponent authUser={authUser} setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity}/>}/>
-            <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} /> } />
+            <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} errorOpen={false} setErrorOpen={setOpen} errorMessage={message} setErrorMessage={setMessage} errorSeverity={severity} setErrorSeverity={setSeverity} /> } />
             <Route path='/recruiterdashboard' render={() => <RecruiterDashboard setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity} /> } />
             <Route path='/playerworkouts' render={() => <PlayerWorkoutComponent authUser={authUser} /> } />
 
