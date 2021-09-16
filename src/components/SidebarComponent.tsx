@@ -79,10 +79,8 @@ function SidebarComponent(props: ISidebarProps) {
 
     let handleLogoutClick = () => {
         props.setAuthUser(undefined);
+        teamManagerClient.defaults.headers.common["authorization"] = null;
         localStorage.clear();
-        // axios.delete()
-        // teamManagerCleanup();
-        teamManagerClient.defaults.headers.common["authorization"] = null
         history.push('/');
     }
 

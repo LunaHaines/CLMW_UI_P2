@@ -83,7 +83,7 @@ function CoachTeamComponent(props: ICoachTeamProps) {
 
     //Remove Dialog
 
-    let promptRemove = async (playerUsername: string) => {
+    let promptRemove = (playerUsername: string) => {
         setAlertOpen(true);
         setSelectedPlayerUsername(playerUsername);
     }
@@ -93,6 +93,9 @@ function CoachTeamComponent(props: ICoachTeamProps) {
             let remove: Offer = new Offer(props.authUser.username, selectedPlayerUsername);
             try{
                 await removePlayer(remove);
+                //Rerender the page after removing
+                let resp = await getAuthorizedCoach(props.authUser.username)
+                setPlayerNames(resp.players)
             } catch(e: any) {
                 props.setErrorOpen(true);
                 props.setErrorSeverity('error');
@@ -100,6 +103,8 @@ function CoachTeamComponent(props: ICoachTeamProps) {
             }
 
         }
+        //close dialog
+        setAlertOpen(false);
     }
 
     let handleAlertClose = () => {
@@ -140,7 +145,7 @@ function CoachTeamComponent(props: ICoachTeamProps) {
                     <Button
                         id={playerInfo[0]}
                         key={playerInfo[0]}
-                        variant='outlined'
+                        variant='contained'
                         color='secondary'
                         size='small'
                         onClick={() => {promptRemove(playerInfo[0])}}
@@ -150,26 +155,26 @@ function CoachTeamComponent(props: ICoachTeamProps) {
                     <br/><br/>
                 </>)
             })}
-                <div>
-      
-            <Dialog open={alertOpen} onClose={handleAlertClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description">
-                <DialogTitle id="alert-dialog-title">{"Remove Player?"}</DialogTitle>
-                <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                    Are you sure you want to remove this player from the team?
-                </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                    Cancel
-                </Button>
-                <Button onClick={handleConfirm} color="secondary" variant="outlined" autoFocus>
-                    Confirm
-                </Button>
-                </DialogActions>
-            </Dialog>
+            
+            <div>
+                <Dialog open={alertOpen} onClose={handleAlertClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description">
+                    <DialogTitle id="alert-dialog-title">{"Remove Player?"}</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Are you sure you want to remove this player from the team?
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleConfirm} color="secondary" variant="contained" autoFocus>
+                        Confirm
+                    </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
 
             <Dialog open={open} onClose={handleClose}>
