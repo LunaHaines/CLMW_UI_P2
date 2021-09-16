@@ -87,3 +87,12 @@ import { Offer } from "../dtos/offer";
             throw resp.data;
         }
     }
+
+    export const modifyExercise = async (playerUsername: String, exercise: String, type: String) => {
+
+        let resp = await teamManagerClient.put('/players/exercise/' + type, {playerUsername, exercise});
+
+        if (resp.status >= 400 && resp.status <= 599) {
+            throw resp.data;
+        }
+    }
