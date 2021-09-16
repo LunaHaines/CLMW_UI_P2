@@ -60,7 +60,7 @@ function RecruiterDashboard(props: IRecruiterDashboardProps) {
                 let response = await recruitAllPlayers();
                 setPlayers(response);
                 props.setOpen(true);
-                props.setMessage('Skill successfully rated!');
+                props.setMessage('Skill successfully rated');
                 props.setSeverity('success');
             }
         } catch (e: any) {
