@@ -27,6 +27,16 @@ import { Offer } from "../dtos/offer";
         return skillArr.skill;
     }
 
+    export const rateSkill = async (username: string, skill: string, rating: number) => {
+
+        let resp = await teamManagerClient.put(`/players/skill/rate?username=${username}&skill=${skill}&rating=${rating}`);
+        
+        if (resp.status >= 400 && resp.status <= 599){
+            throw resp.data;
+        }
+
+    }
+
     export const AddSport = async (addToProfile: AddToProfile) => {
 
         let resp = await teamManagerClient.put('/players/sport', addToProfile);
@@ -36,6 +46,16 @@ import { Offer } from "../dtos/offer";
         }
 
         return resp.data.sports[resp.data.sports.length - 1];
+    }
+
+    export const recruitAllPlayers = async () => {
+        let resp = await teamManagerClient.get('/players');
+
+        if (resp.status >= 400 && resp.status <= 599) {
+            throw resp.data
+        }
+
+        return resp.data;
     }
 
     export const getAllPlayers = async (sport: String) => {
