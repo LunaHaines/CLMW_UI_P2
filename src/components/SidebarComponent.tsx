@@ -7,7 +7,10 @@ import { Principal } from "../dtos/principal";
 import clsx from 'clsx';
 import { useHistory } from "react-router";
 import { teamManagerClient } from "../remote/team-manager-client";
+<<<<<<< HEAD
 import axios from "axios";
+=======
+>>>>>>> dev
 
 interface ISidebarProps {
     authUser: Principal | undefined,
@@ -78,10 +81,10 @@ function SidebarComponent(props: ISidebarProps) {
     }
 
     let handleLogoutClick = () => {
-        props.setAuthUser(undefined);
+        props.setAuthUser(undefined)
+        localStorage.clear()
+        history.push('/')
         teamManagerClient.defaults.headers.common["authorization"] = null;
-        localStorage.clear();
-        history.push('/');
     }
 
     let handleLoginClick = () => {
@@ -92,7 +95,15 @@ function SidebarComponent(props: ISidebarProps) {
         history.push('/register')
     }
 
+    let handlePlayerTeamClick = () => {
+        history.push('/playerteam')
+    }
+
     const classes = useStyles();
+
+    let playerProfile = () => {
+        history.push('/playerprofile');
+    }
 
     return (
         <>
@@ -148,11 +159,11 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Offers' />
                         </ListItem>
-                        <ListItem button key='Teams'>
+                        <ListItem button key='Team' onClick={handlePlayerTeamClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
-                            <ListItemText primary='Teams' />
+                            <ListItemText primary='Team' />
                         </ListItem>
                         <ListItem button key='Workouts'>
                             <ListItemIcon>
@@ -160,7 +171,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Profile'>
+                        <ListItem button key='Profile' onClick = {playerProfile}>
                             <ListItemIcon>
                                 <AccountCircleRounded />
                             </ListItemIcon>

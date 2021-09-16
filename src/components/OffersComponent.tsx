@@ -59,7 +59,7 @@ function OffersComponent(props: IOffersProps) {
         }
     }
 
-    useEffect(() => {getPlayer();});
+    getPlayer();
 
     const classes = useStyles();
 
@@ -87,7 +87,7 @@ function OffersComponent(props: IOffersProps) {
                 :
                 <Typography variant='h5'>You don't have any current offers</Typography>
                 :
-                <Typography variant='h5'>Not sure how you got here</Typography>
+                <Typography variant='h5'>.</Typography>
             }
         </div>
     )
