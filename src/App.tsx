@@ -15,10 +15,10 @@ import SidebarComponent from './components/SidebarComponent';
 import OffersComponent from './components/OffersComponent';
 import CoachTeamComponent from './components/CoachTeamComponent';
 import CoachDashboardComponent from './components/CoachDashboardComponent';
-import WorkoutComponent from './components/workout/WorkoutsComponent';
 import PlayerProfileComponent from './components/PlayerProfileComponent';
 import PlayerTeamComponent from './components/PlayerTeamComponent';
-
+import RecruiterDashboard from './components/RecruiterDashboardComponent';
+import WorkoutComponent from './components/workout/WorkoutComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -114,7 +114,7 @@ function App() {
 		        <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
             <Route path='/playerprofile' render={() => <PlayerProfileComponent authUser={authUser} setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity}/>}/>
             <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} /> } />
-
+            <Route path='/recruiterdashboard' render={() => <RecruiterDashboard setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity} /> } />
           </Switch>
         </div>
       </Router>
