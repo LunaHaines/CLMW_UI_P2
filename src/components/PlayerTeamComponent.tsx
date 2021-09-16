@@ -59,7 +59,7 @@ function PlayerTeamComponent(props: IPlayerTeamProps) {
                     </>
                 )
             })}
-        </div> 
+        </div>
         :
         <div className={classes.root}>
             <Typography variant= 'h4'>You are not on a team</Typography>
