@@ -187,7 +187,7 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     : (props.authUser?.role === 'Recruiter') ?
                     <>
-                        <ListItem button key='Players'>
+                        <ListItem button key='Players' id='players'>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
@@ -199,7 +199,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Profile' />
                         </ListItem>
-                        <ListItem button key='Logout' onClick={handleLogoutClick}>
+                        <ListItem button key='Logout' id='rec-logout' onClick={handleLogoutClick}>
                             <ListItemIcon>
                                 <Backspace />
                             </ListItemIcon>
