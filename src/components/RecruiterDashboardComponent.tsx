@@ -59,9 +59,14 @@ function RecruiterDashboard(props: IRecruiterDashboardProps) {
                 await rateSkill(selectedPlayer.username, skill, rating);
                 let response = await recruitAllPlayers();
                 setPlayers(response);
+                props.setOpen(true);
+                props.setMessage('Skill successfully rated');
+                props.setSeverity('success');
             }
         } catch (e: any) {
-            
+            props.setOpen(true);
+            props.setMessage(e.response?.data.message);
+            props.setMessage('error');
         } finally {
             handleClose();
         }
@@ -91,12 +96,13 @@ function RecruiterDashboard(props: IRecruiterDashboardProps) {
             <Dialog open={dialogOpen} onClose={handleClose}>
                 <DialogTitle>{selectedPlayer?.name}'s skills</DialogTitle>
                 <DialogContent>
-                    {selectedPlayer?.skills.map((s) => {
-                        <DialogContentText>
-                            skill: {s.skill} rating: {s.rating}
-                        </DialogContentText>
-                    })}
                     <DialogContentText>
+                        {selectedPlayer?.skills.map((s) => {
+                            <>
+                                <b>skill:</b> {s.skill} <b>rating:</b> {s.rating}
+                                <br/>
+                            </>
+                        })}
                         Assign this player a new rating?
                     </DialogContentText>
                     <TextField id='skill' label='Skill' variant='outlined' onChange={handleSkillChange} fullWidth />
