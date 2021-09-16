@@ -7,6 +7,7 @@ import { Player } from "../dtos/player";
 import { Principal } from "../dtos/principal";
 import { getAuthorizedPlayer } from "../remote/player-service";
 import { acceptOffer } from "../remote/coach-service";
+import { SettingsInputComponent } from "@material-ui/icons";
 
 interface IOffersProps {
     authUser: Principal | undefined,
@@ -37,7 +38,9 @@ function OffersComponent(props: IOffersProps) {
                 }
             }
         } catch (e: any) {
-            console.log(e);
+            props.setOpen(true);
+            props.setMessage(e.response?.data.message);
+            props.setSeverity('error');
         }
     }
 
@@ -50,12 +53,13 @@ function OffersComponent(props: IOffersProps) {
                 }
             }
         } catch(e: any) {
-            console.error(e)
-            console.log(e.message)
+            props.setOpen(true);
+            props.setMessage(e.response?.data.message);
+            props.setSeverity('error');
         }
     }
 
-    useEffect(() => {getPlayer();});
+    getPlayer();
 
     const classes = useStyles();
 
@@ -83,7 +87,7 @@ function OffersComponent(props: IOffersProps) {
                 :
                 <Typography variant='h5'>You don't have any current offers</Typography>
                 :
-                <Typography variant='h5'>You don't have any current offers</Typography>
+                <Typography variant='h5'>.</Typography>
             }
         </div>
     )

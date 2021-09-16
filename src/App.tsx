@@ -5,17 +5,17 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
 import { useState } from 'react';
 import { Principal } from './dtos/principal';
-import RegisterComponent from './components/Register/RegisterComponent';
+import RegisterComponent from './components/register/RegisterComponent';
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert'
 import { AppBar, IconButton, Snackbar, Toolbar, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import LoginComponent from './components/LoginComponent';
 import MenuIcon from '@material-ui/icons/Menu'
 import SidebarComponent from './components/SidebarComponent';
-import PlayerProfileComponent from './components/PlayerProfileComponent';
 import OffersComponent from './components/OffersComponent';
 import CoachTeamComponent from './components/CoachTeamComponent';
 import CoachDashboardComponent from './components/CoachDashboardComponent';
+import PlayerProfileComponent from './components/PlayerProfileComponent';
 import PlayerTeamComponent from './components/PlayerTeamComponent';
 import RecruiterDashboard from './components/RecruiterDashboardComponent';
 import WorkoutComponent from './components/Workout/WorkoutsComponent';
@@ -108,11 +108,11 @@ function App() {
             <Route exact path='/' render={() => <HomeComponent currentUser={authUser} /> } />
             <Route path='/register' render={() => <RegisterComponent open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
             <Route path='/login' render={() => <LoginComponent setAuthUser={setAuthUser} open={open} setOpen={setOpen} message={message} setMessage={setMessage} severity={severity} setSeverity={setSeverity} /> } />
-            <Route path='/playerprofile' render={() => <PlayerProfileComponent authUser={authUser} setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity}/>}/>
             <Route path='/workouts' render={() => <WorkoutComponent currentUser={authUser} /> } />
-            <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setSeverity={setSeverity} setMessage={setMessage} /> } />
-            <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} /> } />
+            <Route path='/offers' render={() => <OffersComponent authUser={authUser} setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity} /> } />
+            <Route path='/team' render={() => <CoachTeamComponent authUser={authUser} errorOpen={false} setErrorOpen={setOpen} errorMessage={message} setErrorMessage={setMessage} errorSeverity={severity} setErrorSeverity={setSeverity} /> } />
 		        <Route path='/coachdashboard' render={() => <CoachDashboardComponent authUser={authUser} /> } />
+            <Route path='/playerprofile' render={() => <PlayerProfileComponent authUser={authUser} setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity}/>}/>
             <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} /> } />
             <Route path='/recruiterdashboard' render={() => <RecruiterDashboard setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity} /> } />
           </Switch>
