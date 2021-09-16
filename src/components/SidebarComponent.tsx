@@ -208,13 +208,13 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     :
                     <>
-                        <ListItem button key='Login' onClick={handleLoginClick}>
+                        <ListItem button key='Login' id='login' onClick={handleLoginClick}>
                             <ListItemIcon>
                                 <Person />
                             </ListItemIcon>
                             <ListItemText primary='Login' />
                         </ListItem>
-                        <ListItem button key='Register' onClick={handleRegisterClick}>
+                        <ListItem button key='Register' id='register' onClick={handleRegisterClick}>
                             <ListItemIcon>
                                 <PersonAdd />
                             </ListItemIcon>
