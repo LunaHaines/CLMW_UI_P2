@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Coach } from "../dtos/coach";
 import { Principal } from "../dtos/principal";
 import { getPlayerTeam } from "../remote/coach-service";
+import { getAuthorizedPlayer } from "../remote/player-service";
 
 interface IPlayerTeamProps {
     authUser: Principal | undefined
@@ -23,8 +24,16 @@ function PlayerTeamComponent(props: IPlayerTeamProps) {
     let getTeam = async () => {
         if (props.authUser) {
             if (!team) {
-                let foundTeam = await getPlayerTeam(props.authUser.username);
-                setTeam(foundTeam);
+            
+                try{
+                    let foundTeam = await getPlayerTeam(props.authUser.username);
+                    setTeam(foundTeam);
+                    }
+                    catch(e: any){
+                        console.log(e.message);
+                    } 
+                
+                
             }
         }
     }
@@ -34,6 +43,7 @@ function PlayerTeamComponent(props: IPlayerTeamProps) {
     getTeam();
 
     return (
+        team ?
         <div className={classes.root}>
             <Typography variant='h2'>Hello, {team?.teamName}</Typography>
             <br/><br/>
@@ -49,6 +59,10 @@ function PlayerTeamComponent(props: IPlayerTeamProps) {
                     </>
                 )
             })}
+        </div> 
+        :
+        <div className={classes.root}>
+            <Typography variant= 'h4'>You are not on a team</Typography>
         </div>
     )
 }
