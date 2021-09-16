@@ -19,6 +19,7 @@ import PlayerProfileComponent from './components/PlayerProfileComponent';
 import PlayerTeamComponent from './components/PlayerTeamComponent';
 import RecruiterDashboard from './components/RecruiterDashboardComponent';
 import WorkoutComponent from './components/workout/WorkoutComponent';
+import PlayerWorkoutComponent from './components/PlayerWorkoutComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -115,6 +116,8 @@ function App() {
             <Route path='/playerprofile' render={() => <PlayerProfileComponent authUser={authUser} setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity}/>}/>
             <Route path='/playerteam' render={() => <PlayerTeamComponent authUser={authUser} /> } />
             <Route path='/recruiterdashboard' render={() => <RecruiterDashboard setOpen={setOpen} setMessage={setMessage} setSeverity={setSeverity} /> } />
+            <Route path='/playerworkouts' render={() => <PlayerWorkoutComponent authUser={authUser} /> } />
+
           </Switch>
         </div>
       </Router>
