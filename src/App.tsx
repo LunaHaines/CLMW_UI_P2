@@ -18,7 +18,7 @@ import CoachDashboardComponent from './components/CoachDashboardComponent';
 import PlayerProfileComponent from './components/PlayerProfileComponent';
 import PlayerTeamComponent from './components/PlayerTeamComponent';
 import RecruiterDashboard from './components/RecruiterDashboardComponent';
-import WorkoutComponent from './components/Workout/WorkoutsComponent';
+import WorkoutComponent from './components/workout/WorkoutComponent';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
