@@ -7,7 +7,6 @@ import { Principal } from "../dtos/principal";
 import clsx from 'clsx';
 import { useHistory } from "react-router";
 import { teamManagerClient } from "../remote/team-manager-client";
-import axios from "axios";
 
 interface ISidebarProps {
     authUser: Principal | undefined,
