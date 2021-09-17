@@ -57,7 +57,7 @@ function PlayerTeamComponent(props: IPlayerTeamProps) {
     let handleConfirm = async (e: any) => {
         if(props.authUser){
             let userInfo = await getAuthorizedPlayer(props.authUser.username);
-            let remove: Offer = new Offer(team?.teamName!, props.authUser.username);
+            let remove: Offer = new Offer(team?.username!, props.authUser.username);
             try{
                 await removePlayer(remove);
                 //Rerender the page after removing
