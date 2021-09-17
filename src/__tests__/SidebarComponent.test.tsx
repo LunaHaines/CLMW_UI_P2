@@ -3,10 +3,11 @@ import SidebarComponent from '../components/SidebarComponent';
 import { Principal } from '../dtos/principal';
 
 import { useHistory } from 'react-router';
+const mockHistoryPush = jest.fn();
 jest.mock('react-router', () => ({
     ...jest.requireActual('react-router'),
     useHistory: () => ({
-      push: jest.fn()
+      push: mockHistoryPush
     })
 }));
 
@@ -93,20 +94,22 @@ describe('SidebarComponent Test Suite', () => {
 
     })
 
-    it('Clicking offers as a player works correctly', () => {
+    it('Clicking login works when not signed in', () => {
         // mock the props
-        let mockAuthUser = new Principal('id', 'username', 'Player');
+        let mockAuthUser = undefined;
         let mockSetAuthUser = jest.fn();
         let mockDrawerOpen = false;
         let mockSetDrawerOpen = jest.fn();
 
-        // set up SideBarComponent wrapper
+        // set up SidebarComponent wrapper
         const wrapper = shallow(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
 
-        let offersWrapper = wrapper.find('#offers');
+        // find wrappers for login and register buttons
+        let loginWrapper = wrapper.find('#login').at(0);
 
-        offersWrapper.simulate('click');
+        loginWrapper.simulate('click');
 
+        expect(mockHistoryPush).toBeCalled();
     })
 
     it('clicking logout sets authUser to undefined and teamManagerClient authorization header to null', () => {
@@ -126,4 +129,23 @@ describe('SidebarComponent Test Suite', () => {
         expect(mockSetAuthUser).toBeCalled();
         
     })
+
+    it('Clicking offers as a player works correctly', () => {
+        // mock the props
+        let mockAuthUser = new Principal('id', 'username', 'Player');
+        let mockSetAuthUser = jest.fn();
+        let mockDrawerOpen = false;
+        let mockSetDrawerOpen = jest.fn();
+
+        // set up SideBarComponent wrapper
+        const wrapper = shallow(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
+
+        let offersWrapper = wrapper.find('#offers');
+
+        offersWrapper.simulate('click');
+
+        expect(mockHistoryPush).toBeCalledWith('/offers');
+
+    })
+
 })
