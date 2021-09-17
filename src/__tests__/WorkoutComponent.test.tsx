@@ -11,16 +11,14 @@ describe('SidebarComponent Test Suite', () => {
 
     it('WorkoutComponent renders', () => {
         let mockAuthUser = undefined;
-        let mockSetAuthUser = jest.fn();
 
         const wrapper = shallow(<WorkoutComponent currentUser={mockAuthUser} /> );
 
         expect(wrapper).toBeTruthy();
     })
 
-    it('getAllExercises is invoked ', () => {
+    it('getAllExercises is invoked', () => {
         let mockAuthUser = undefined;
-        let mockSetAuthUser = jest.fn();
 
         const wrapper = mount(<WorkoutComponent currentUser={mockAuthUser} /> );
 

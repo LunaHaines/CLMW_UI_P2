@@ -19,9 +19,11 @@ interface IExerciseListProps {
 
 const renderDetailsButton = (params: any) => {
 
+    console.log(params.row.name+"    id"+params.row.id);
     return (
         <strong>
             <Button
+                id={params.row.name}
                 variant="contained"
                 color="primary"
                 size="small"
