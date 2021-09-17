@@ -10,6 +10,9 @@ jest.mock('react-router', () => ({
     })
 }));
 
+import { teamManagerClient } from '../remote/team-manager-client';
+jest.mock('../remote/team-manager-client')
+
 describe('SidebarComponent Test Suite', () => {
 
     afterEach(() => {
@@ -63,8 +66,7 @@ describe('SidebarComponent Test Suite', () => {
 
         // set up SidebarComponent wrapper
         const wrapper = mount(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
-        console.log(wrapper.debug());
-        
+
         // expect things to be in the component
         expect(wrapper.containsMatchingElement(<span className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Offers</span>)).toBeTruthy();
         expect(wrapper.containsMatchingElement(<span className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Team</span>)).toBeTruthy();
@@ -91,7 +93,7 @@ describe('SidebarComponent Test Suite', () => {
 
     })
 
-    it('Clicking offers as a player renders correctly', () => {
+    it('Clicking offers as a player works correctly', () => {
         // mock the props
         let mockAuthUser = new Principal('id', 'username', 'Player');
         let mockSetAuthUser = jest.fn();
@@ -105,5 +107,23 @@ describe('SidebarComponent Test Suite', () => {
 
         offersWrapper.simulate('click');
 
+    })
+
+    it('clicking logout sets authUser to undefined and teamManagerClient authorization header to null', () => {
+        // mock the props
+        let mockAuthUser = new Principal('id', 'username', 'Player');
+        let mockSetAuthUser = jest.fn();
+        let mockDrawerOpen = false;
+        let mockSetDrawerOpen = jest.fn();
+
+        // set up SideBarComponent wrapper
+        const wrapper = shallow(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
+
+        let logoutWrapper = wrapper.find('#player-logout');
+        logoutWrapper.simulate('click');
+
+        expect(teamManagerClient.defaults.headers.common['authorization']).toBeFalsy();
+        expect(mockSetAuthUser).toBeCalled();
+        
     })
 })

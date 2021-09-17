@@ -186,7 +186,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Profile' />
                         </ListItem>
-                        <ListItem button key='Logout' onClick={handleLogoutClick}>
+                        <ListItem button key='Logout' id='player-logout' onClick={handleLogoutClick}>
                             <ListItemIcon>
                                 <Backspace />
                             </ListItemIcon>
