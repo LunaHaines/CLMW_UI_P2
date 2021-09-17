@@ -3,12 +3,16 @@ import SidebarComponent from '../components/SidebarComponent';
 import { Principal } from '../dtos/principal';
 
 import { useHistory } from 'react-router';
+const mockHistoryPush = jest.fn();
 jest.mock('react-router', () => ({
     ...jest.requireActual('react-router'),
     useHistory: () => ({
-      push: jest.fn()
+      push: mockHistoryPush
     })
 }));
+
+import { teamManagerClient } from '../remote/team-manager-client';
+jest.mock('../remote/team-manager-client')
 
 describe('SidebarComponent Test Suite', () => {
 
@@ -90,7 +94,61 @@ describe('SidebarComponent Test Suite', () => {
 
     })
 
-    it('Clicking offers as a player renders correctly', () => {
+    it('Clicking login sends the user to /login', () => {
+        // mock the props
+        let mockAuthUser = undefined;
+        let mockSetAuthUser = jest.fn();
+        let mockDrawerOpen = false;
+        let mockSetDrawerOpen = jest.fn();
+
+        // set up SidebarComponent wrapper
+        const wrapper = shallow(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
+
+        // find wrappers for login buttons
+        let loginWrapper = wrapper.find('#login').at(0);
+
+        loginWrapper.simulate('click');
+
+        expect(mockHistoryPush).toBeCalledWith('/login');
+    })
+
+    it('Clisking register send the user to /register', () => {
+        // mock the props
+        let mockAuthUser = undefined;
+        let mockSetAuthUser = jest.fn();
+        let mockDrawerOpen = false;
+        let mockSetDrawerOpen = jest.fn();
+
+        // set up SidebarComponent wrapper
+        const wrapper = shallow(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
+
+        // find wrappers for register buttons
+        let registerWrapper = wrapper.find('#register').at(0);
+
+        registerWrapper.simulate('click');
+
+        expect(mockHistoryPush).toBeCalledWith('/register');
+    })
+
+    it('clicking logout sets authUser to undefined and teamManagerClient authorization header to null', () => {
+        // mock the props
+        let mockAuthUser = new Principal('id', 'username', 'Player');
+        let mockSetAuthUser = jest.fn();
+        let mockDrawerOpen = false;
+        let mockSetDrawerOpen = jest.fn();
+
+        // set up SideBarComponent wrapper
+        const wrapper = shallow(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
+
+        let logoutWrapper = wrapper.find('#player-logout');
+        logoutWrapper.simulate('click');
+
+        expect(teamManagerClient.defaults.headers.common['authorization']).toBeFalsy();
+        expect(mockSetAuthUser).toBeCalled();
+        
+    })
+
+    it('Clicking offers sends player to /offers', () => {
         // mock the props
         let mockAuthUser = new Principal('id', 'username', 'Player');
         let mockSetAuthUser = jest.fn();
@@ -104,5 +162,62 @@ describe('SidebarComponent Test Suite', () => {
 
         offersWrapper.simulate('click');
 
+        expect(mockHistoryPush).toBeCalledWith('/offers');
+
     })
+
+    it('Clicking Team sends player to /playerteam', () => {
+        // mock the props
+        let mockAuthUser = new Principal('id', 'username', 'Player');
+        let mockSetAuthUser = jest.fn();
+        let mockDrawerOpen = false;
+        let mockSetDrawerOpen = jest.fn();
+
+        // set up SideBarComponent wrapper
+        const wrapper = shallow(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
+
+        let playerTeamWrapper = wrapper.find('#player-team');
+
+        playerTeamWrapper.simulate('click');
+
+        expect(mockHistoryPush).toBeCalledWith('/playerteam');
+
+    })
+
+    it('Clicking Workouts sends player to /playerworkouts', () => {
+        // mock the props
+        let mockAuthUser = new Principal('id', 'username', 'Player');
+        let mockSetAuthUser = jest.fn();
+        let mockDrawerOpen = false;
+        let mockSetDrawerOpen = jest.fn();
+
+        // set up SideBarComponent wrapper
+        const wrapper = shallow(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
+
+        let playerWorkoutsWrapper = wrapper.find('#player-workouts');
+
+        playerWorkoutsWrapper.simulate('click');
+
+        expect(mockHistoryPush).toBeCalledWith('/playerworkouts');
+        
+    })
+
+    it('Clicking Profile sends player to /playerprofile', () => {
+        // mock the props
+        let mockAuthUser = new Principal('id', 'username', 'Player');
+        let mockSetAuthUser = jest.fn();
+        let mockDrawerOpen = false;
+        let mockSetDrawerOpen = jest.fn();
+
+        // set up SideBarComponent wrapper
+        const wrapper = shallow(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
+
+        let playerProfileWrapper = wrapper.find('#player-profile');
+
+        playerProfileWrapper.simulate('click');
+
+        expect(mockHistoryPush).toBeCalledWith('/playerprofile');
+        
+    })
+
 })
