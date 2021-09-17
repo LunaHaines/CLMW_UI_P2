@@ -63,7 +63,6 @@ describe('SidebarComponent Test Suite', () => {
 
         // set up SidebarComponent wrapper
         const wrapper = mount(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
-        console.log(wrapper.debug());
         
         // expect things to be in the component
         expect(wrapper.containsMatchingElement(<span className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Offers</span>)).toBeTruthy();
