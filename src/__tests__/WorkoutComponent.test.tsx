@@ -25,8 +25,6 @@ describe('SidebarComponent Test Suite', () => {
         const wrapper = mount(<WorkoutComponent currentUser={mockAuthUser} /> );
 
         expect(getAllExercises).toBeCalled();
-
-
     })
 
 })
