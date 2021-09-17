@@ -67,7 +67,10 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
         }
 
         try {
-            await RegisterNewPlayer(playerFormData);
+            const configuredData = {
+                             ...playerFormData, sports: [playerFormData.sport]
+                         }
+            await RegisterNewPlayer(configuredData);
             props.setMessage('Successfully registered!');
             props.setSeverity('success');
             props.setOpen(true);

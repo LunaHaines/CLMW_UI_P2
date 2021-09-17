@@ -99,11 +99,19 @@ function SidebarComponent(props: ISidebarProps) {
         history.push('/recruiterdashboard')
     }
 
-    const classes = useStyles();
+    let handlePlayerWorkoutsClick = () => {
+        history.push('/playerworkouts')
+    }
 
     let playerProfile = () => {
         history.push('/playerprofile');
     }
+
+
+
+    const classes = useStyles();
+
+
 
     return (
         <>
@@ -165,7 +173,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Team' />
                         </ListItem>
-                        <ListItem button key='Workouts'>
+                        <ListItem button key='Workouts' onClick={handlePlayerWorkoutsClick}>
                             <ListItemIcon>
                                 <SportsRounded />
                             </ListItemIcon>
