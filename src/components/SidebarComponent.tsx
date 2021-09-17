@@ -174,13 +174,13 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Team' />
                         </ListItem>
-                        <ListItem button key='Workouts' onClick={handlePlayerWorkoutsClick}>
+                        <ListItem button key='Workouts' id='player-workouts' onClick={handlePlayerWorkoutsClick}>
                             <ListItemIcon>
                                 <SportsRounded />
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Profile' onClick = {playerProfile}>
+                        <ListItem button key='Profile' id='player-profile' onClick = {playerProfile}>
                             <ListItemIcon>
                                 <AccountCircleRounded />
                             </ListItemIcon>
