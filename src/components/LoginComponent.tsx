@@ -137,9 +137,9 @@ function LoginComponent(props: ILoginProps) {
             <FormControl component="fieldset" className={classes.role}>
                 <FormLabel component="legend">Role</FormLabel>
                 <RadioGroup aria-label="role" name="role" value={formData.role} onChange={handleChange}>
-                    <FormControlLabel value="player" control={<Radio />} label="player" />
-                    <FormControlLabel value="coach" control={<Radio />} label="coach" />
-                    <FormControlLabel value="recruiter" control={<Radio />} label="recruiter" />
+                    <FormControlLabel id='player-radio' value="player" control={<Radio />} label="player" />
+                    <FormControlLabel id='coach-radio' value="coach" control={<Radio />} label="coach" />
+                    <FormControlLabel id='recruiter-radio' value="recruiter" control={<Radio />} label="recruiter" />
                 </RadioGroup>
             </FormControl>
             <Button
