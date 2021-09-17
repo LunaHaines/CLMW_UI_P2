@@ -162,7 +162,7 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     : (props.authUser?.role === 'Player') ?
                     <>
-                        <ListItem button key='Offers' onClick={handleOffersClick}>
+                        <ListItem button key='Offers' id='offers' onClick={handleOffersClick}>
                             <ListItemIcon>
                                 <AttachMoneyRounded />
                             </ListItemIcon>

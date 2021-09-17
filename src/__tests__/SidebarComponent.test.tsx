@@ -2,6 +2,14 @@ import { mount, shallow } from 'enzyme';
 import SidebarComponent from '../components/SidebarComponent';
 import { Principal } from '../dtos/principal';
 
+import { useHistory } from 'react-router';
+jest.mock('react-router', () => ({
+    ...jest.requireActual('react-router'),
+    useHistory: () => ({
+      push: jest.fn()
+    })
+}));
+
 describe('SidebarComponent Test Suite', () => {
 
     afterEach(() => {
@@ -55,7 +63,8 @@ describe('SidebarComponent Test Suite', () => {
 
         // set up SidebarComponent wrapper
         const wrapper = mount(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
-
+        console.log(wrapper.debug());
+        
         // expect things to be in the component
         expect(wrapper.containsMatchingElement(<span className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Offers</span>)).toBeTruthy();
         expect(wrapper.containsMatchingElement(<span className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Team</span>)).toBeTruthy();
@@ -79,6 +88,22 @@ describe('SidebarComponent Test Suite', () => {
         expect(wrapper.containsMatchingElement(<span className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Workouts</span>)).toBeTruthy();
         expect(wrapper.containsMatchingElement(<span className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Players</span>)).toBeTruthy();
         expect(wrapper.containsMatchingElement(<span className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Logout</span>)).toBeTruthy();
+
+    })
+
+    it('Clicking offers as a player renders correctly', () => {
+        // mock the props
+        let mockAuthUser = new Principal('id', 'username', 'Player');
+        let mockSetAuthUser = jest.fn();
+        let mockDrawerOpen = false;
+        let mockSetDrawerOpen = jest.fn();
+
+        // set up SideBarComponent wrapper
+        const wrapper = shallow(<SidebarComponent authUser={mockAuthUser} setAuthUser={mockSetAuthUser} drawerOpen={mockDrawerOpen} setDrawerOpen={mockSetDrawerOpen} />);
+
+        let offersWrapper = wrapper.find('#offers');
+
+        offersWrapper.simulate('click');
 
     })
 })
