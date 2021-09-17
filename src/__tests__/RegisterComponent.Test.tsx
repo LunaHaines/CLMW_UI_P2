@@ -1,6 +1,6 @@
 import { mount, shallow } from "enzyme";
 import React from "react";
-import RegisterComponent from '../components/Register/RegisterComponent'
+import RegisterComponent from '../components/register/RegisterComponent'
 describe('RegisterComponent Test Suite', () => {
 
     afterEach(() => {
