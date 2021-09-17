@@ -10,7 +10,6 @@ interface IWorkoutProps {
 
 function WorkoutComponent(props: IWorkoutProps) {
     const [exercises, setExercises] = useState([] as Exercise[]);
-    const [haveExercises, setHaveExercises] = useState(false);
 
     let getExercises = async () => {
         let response = await getAllExercises();
@@ -19,18 +18,7 @@ function WorkoutComponent(props: IWorkoutProps) {
 
     useEffect(() => {
         getExercises();
-    }, [haveExercises])
-
-    let checkExercises = () => {
-        if (!haveExercises) {
-            setHaveExercises(true)
-        }
-    }
-    
-    useEffect(() => {
-        checkExercises();
-    })
-
+    }, [])
 
     return (
         <>

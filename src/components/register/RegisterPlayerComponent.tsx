@@ -2,7 +2,7 @@ import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
-import { RegisterNewPlayer } from '../../remote/player-service';
+import { registerNewPlayer } from '../../remote/player-service';
 
 interface IRegisterPlayerProps{
     open: boolean,
@@ -70,7 +70,7 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
             const configuredData = {
                              ...playerFormData, sports: [playerFormData.sport]
                          }
-            await RegisterNewPlayer(configuredData);
+            await registerNewPlayer(configuredData);
             props.setMessage('Successfully registered!');
             props.setSeverity('success');
             props.setOpen(true);
