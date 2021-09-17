@@ -168,7 +168,7 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Offers' />
                         </ListItem>
-                        <ListItem button key='Team' onClick={handlePlayerTeamClick}>
+                        <ListItem button key='Team' id='player-team' onClick={handlePlayerTeamClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
