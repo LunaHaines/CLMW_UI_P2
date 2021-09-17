@@ -64,7 +64,7 @@ function CoachDashboardComponent(props: ICoachDashboardProps) {
                                                           }
                                                          <td>{player.name}</td>
                                                          <td>{player.username}</td>
-                                                         <td>{player.skills}</td>
+                                                         <td>{player.skills.map((s: {skill: string, rating: number}) => { return (<><i>Skill:</i> {s.skill} <i>Rating:</i> {s.rating}</>)})}</td>
                                                         </tr>
                                                       )
                                                 );
