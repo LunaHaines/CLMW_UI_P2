@@ -76,7 +76,7 @@ function LoginComponent(props: ILoginProps) {
                 history.push('/coachdashboard')
             } catch (e: any) {
                 props.setSeverity('error');
-                props.setMessage(e.response?.data.message);
+                props.setMessage(e?.response?.data.message);
                 props.setOpen(true);
             }
         }else if (formData.role === 'recruiter'){
@@ -89,7 +89,7 @@ function LoginComponent(props: ILoginProps) {
                 history.push('/recruiterdashboard')
             } catch (e: any) {
                 props.setSeverity('error');
-                props.setMessage(e.response.data.message);
+                props.setMessage(e?.response?.data.message);
                 props.setOpen(true);
             }
         }else if (formData.role === 'player'){
@@ -102,7 +102,7 @@ function LoginComponent(props: ILoginProps) {
                 history.push('/playerdashboard');
             } catch (e: any){
                 props.setSeverity('error');
-                props.setMessage(e.response.data.message);
+                props.setMessage(e?.response?.data.message);
                 props.setOpen(true);
             }
         }
