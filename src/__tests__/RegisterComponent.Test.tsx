@@ -46,7 +46,7 @@ describe('RegisterComponent Test Suite', () => {
 
     })
 
-    it('RegisterComponent setts form type to coach correctly', () => {
+    it('RegisterComponent sets form type to coach correctly', () => {
         // mock props
         let mockOpen = false;
         let mockSetOpenFn = jest.fn();
