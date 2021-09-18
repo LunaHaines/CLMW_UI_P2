@@ -1,5 +1,5 @@
 import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles, Typography, MenuItem, Select } from '@material-ui/core';
-import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert';
+import { Color } from '@material-ui/lab/Alert';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { RegisterNewPlayer } from '../../remote/player-service';
@@ -11,10 +11,6 @@ interface IRegisterPlayerProps{
     setMessage: (newMessage: string) => void,
     severity: Color | undefined,
     setSeverity: (newSeverity: Color | undefined) => void
-}
-
-function Alert(props: AlertProps){
-    return <MuiAlert elevation={6} variant='filled' {...props} />;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
