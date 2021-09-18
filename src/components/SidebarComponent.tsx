@@ -135,19 +135,19 @@ function SidebarComponent(props: ISidebarProps) {
                     {
                     (props.authUser?.role === 'Coach') ?
                     <>
-                        <ListItem button key='Team' onClick={handleCoachTeamClick}>
+                        <ListItem button key='Team' id='coach-team' onClick={handleCoachTeamClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
                             <ListItemText primary='Team' />
                         </ListItem>
-                        <ListItem button key='Workouts' onClick={handleCoachWorkoutClick}>
+                        <ListItem button key='Workouts' id='coach-workouts' onClick={handleCoachWorkoutClick}>
                             <ListItemIcon>
                                 <SportsRounded />
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Players' onClick={handleCoachDashboardClick}>
+                        <ListItem button key='Players' id='coach-players' onClick={handleCoachDashboardClick}>
                             <ListItemIcon>
                                 <GroupAddRounded />
                             </ListItemIcon>
@@ -195,11 +195,11 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     : (props.authUser?.role === 'Recruiter') ?
                     <>
-                        <ListItem button key='Players' id='players'>
+                        <ListItem button key='Players' id='players' onClick={handleRecPlayersClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
-                            <ListItemText primary='Players' onClick={handleRecPlayersClick} />
+                            <ListItemText primary='Players' />
                         </ListItem>
                         <ListItem button key='Profile'>
                             <ListItemIcon>
