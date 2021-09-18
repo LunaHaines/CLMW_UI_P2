@@ -1,4 +1,4 @@
-import { createStyles, Input, InputLabel, Theme, makeStyles, Button } from "@material-ui/core";
+import { createStyles, Input, InputLabel, Theme, makeStyles, Button, MenuItem, Select } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import { Color } from '@material-ui/lab/Alert';
 import { Principal } from "../dtos/principal";
@@ -40,6 +40,7 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
 
     let handleChange = (e: any) => {
         const { name, value } = e.target;
+        console.log(name,value);
         setFormData({...formData, [name]: value});
     }
 
@@ -114,15 +115,31 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
                 >  Add Skill
             </Button>
             <div className={classes.root}>
-                <FormControl margin='normal' fullWidth>
-                    <InputLabel htmlFor='addedSport'>Add Sport</InputLabel>
-                    <Input
+            <FormControl margin="normal" fullWidth>
+                    <InputLabel htmlFor="addedSport">sport</InputLabel>
+                    <Select
+                        id="addedSport"
+                        name="addedSport"
+                        label="Sport"
                         onChange={handleChange}
-                        id='addedSort'
-                        name='addedSport'
-                        type='text'
-                        placeholder='Enter a sport to add'
-                    />
+                    >
+                        <MenuItem value="Baseball">Baseball</MenuItem>
+                        <MenuItem value="Basketball">Basketball</MenuItem>
+                        <MenuItem value="Bocce">Bocce</MenuItem>
+                        <MenuItem value="Boxing">Boxing</MenuItem>
+                        <MenuItem value="Cricket">Cricket</MenuItem>
+                        <MenuItem value="Football">Football (American)</MenuItem>
+                        <MenuItem value="Soccer">Football (Soccer)</MenuItem>
+                        <MenuItem value="Golf">Golf</MenuItem>
+                        <MenuItem value="Gymnastics">Gymnastics</MenuItem>
+                        <MenuItem value="Technical">Hockey</MenuItem>
+                        <MenuItem value="Lacrosse">Lacrosse</MenuItem>
+                        <MenuItem value="Rugbyl">Rugby</MenuItem>
+                        <MenuItem value="Table Tennis">Table Tennis</MenuItem>
+                        <MenuItem value="Tennis">Tennis</MenuItem>
+                        <MenuItem value="Volleyball">Volleyball</MenuItem>
+                        <MenuItem value="Wrestling">Wrestling</MenuItem>
+                    </Select>
                 </FormControl>
             </div>
             <Button
