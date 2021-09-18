@@ -7,18 +7,10 @@ import { assignExercise } from '../../remote/coach-service';
 
 interface IExerciseListProps {
     exercises: Exercise[],
-    coach: string | undefined
+    user: string | undefined
 }
 
-// interface Data {                     //Not needed?
-//     bodyPart: string,
-//     equipment: string,
-//     target: string,
-//     name: string
-// }
-
 const renderDetailsButton = (params: any) => {
-
     return (
         <strong>
             <Button
@@ -27,7 +19,7 @@ const renderDetailsButton = (params: any) => {
                 size="small"
                 style={{ marginLeft: 16 }}
                 onClick={() => {
-                    assignExercise(params.row.name, coach);             //Check for throw and alert if not added 
+                    assignExercise(params.row.name, user);             //Check for throw and alert if not added 
                     alert(`Assigned ${params.row.name} to your team!`);
                 }}
             >
@@ -75,13 +67,14 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-var coach: string;
+var user: string;
 
 function ExerciseListComponent(props: IExerciseListProps) {
+    
     const rows = props.exercises;
     const classes = useStyles();
     
-    coach = useState(props.coach as string)[0];
+    user = useState(props.user as string)[0];
     
     return (
         <>
