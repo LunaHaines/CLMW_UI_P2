@@ -2,7 +2,7 @@ import { mount, shallow } from 'enzyme';
 import RecruiterDashboard from '../components/RecruiterDashboardComponent';
 import { Player } from '../dtos/player';
 
-let mockPlayer = new Player('name', 'username', ['offer'], ['exercise'], ['completedExercie'], { skill: 'skill', rating: 5})
+let mockPlayer = new Player('name', 'username', ['offer'], ['exercise'], ['completedExercie'], [{ skill: 'skill', rating: 5}])
 import {rateSkill, recruitAllPlayers } from '../remote/player-service';
 jest.mock('../remote/player-service', () => {
     recruitAllPlayers: jest.fn().mockImplementation(() => {
