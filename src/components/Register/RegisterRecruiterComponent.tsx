@@ -2,7 +2,7 @@ import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
-import { RegisterNewRecruiter } from '../../remote/recruiter-service';
+import { registerNewRecruiter } from '../../remote/recruiter-service';
 
 interface IRegisterRecruiterProps{
     open: boolean,
@@ -66,7 +66,7 @@ function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
         }
 
         try {
-            await RegisterNewRecruiter(recruiterFormData);
+            await registerNewRecruiter(recruiterFormData);
             props.setMessage('Successfully registered!');
             props.setSeverity('success');
             props.setOpen(true);
