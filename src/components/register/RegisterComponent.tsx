@@ -1,9 +1,17 @@
 import { useState } from 'react';
-import { Button, Typography } from '@material-ui/core'
+import { Button, createStyles, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles, TextField, Theme, Typography } from "@material-ui/core";
 import RegisterCoachComponent from './RegisterCoachComponent';
 import { Color } from '@material-ui/lab/Alert';
 import RegisterPlayerComponent from './RegisterPlayerComponent';
 import RegisterRecruiterComponent from './RegisterRecruiterComponent';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            margin: theme.spacing(7)+1
+        }
+    })
+)
 
 interface IRegisterProps {
     open: boolean,
@@ -14,8 +22,12 @@ interface IRegisterProps {
     setSeverity: (newSeverity: Color | undefined) => void
 }
 
+
 function RegisterComponent(props: IRegisterProps) {
+
     const [formType, setFormType] = useState(undefined as String | undefined)
+
+    const classes = useStyles();
 
     return (
         (formType === 'player') ?
@@ -31,7 +43,7 @@ function RegisterComponent(props: IRegisterProps) {
             <RegisterRecruiterComponent open={props.open} setOpen={props.setOpen} message={props.message} setMessage={props.setMessage} severity={props.severity} setSeverity={props.setSeverity} />
         </>
         :
-        <>
+        <div className={classes.root}>
             <Button 
                 id='form-type-player'
                 variant='contained'
@@ -53,7 +65,7 @@ function RegisterComponent(props: IRegisterProps) {
                 onClick={() => setFormType('recruiter')}>
                     Recruiter
             </Button>
-        </>
+        </div>
     )
 }
 
