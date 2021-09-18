@@ -98,7 +98,7 @@ function SidebarComponent(props: ISidebarProps) {
     let handleRecPlayersClick = () => {
         history.push('/recruiterdashboard')
     }
-    
+
     let handlePlayerWorkoutsClick = () => {
         history.push('/playerworkouts')
     }

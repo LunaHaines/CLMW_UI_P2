@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { Exercise } from "../../dtos/exercise";
+import { useEffect, useState } from "react"
+import { Exercise } from "../../dtos/exercise"
 import { Principal } from "../../dtos/principal";
-import { getAllExercises } from "../../remote/exercise-service";
-import ExerciseListComponent from "./ExerciseListComponent";
+import { getAllExercises } from "../../remote/exercise-service"
+import ExerciseListComponent from "./ExerciseListComponent"
 
 interface IWorkoutProps {
     currentUser: Principal | undefined
@@ -34,7 +34,7 @@ function WorkoutComponent(props: IWorkoutProps) {
 
     return (
         <>
-            <ExerciseListComponent exercises={exercises} user={props.currentUser?.username} />
+            <ExerciseListComponent exercises={exercises} coach={props.currentUser?.username} />
         </>
     )
 }

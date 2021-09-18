@@ -145,6 +145,7 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
                         <MenuItem value="Volleyball">Volleyball</MenuItem>
                         <MenuItem value="Wrestling">Wrestling</MenuItem>
                     </Select>
+
                 </FormControl>
 
 
