@@ -200,12 +200,6 @@ function SidebarComponent(props: ISidebarProps) {
                             </ListItemIcon>
                             <ListItemText primary='Players' onClick={handleRecPlayersClick} />
                         </ListItem>
-                        <ListItem button key='Profile'>
-                            <ListItemIcon>
-                                <AccountCircleRounded />
-                            </ListItemIcon>
-                            <ListItemText primary='Profile' />
-                        </ListItem>
                         <ListItem button key='Logout' onClick={handleLogoutClick}>
                             <ListItemIcon>
                                 <Backspace />
