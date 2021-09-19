@@ -86,12 +86,10 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
                 let selectedPlayer = await getAuthorizedPlayer(props.authUser.username);
                let skillArr = selectedPlayer.skills;
                 setSkills(skillArr);
-                console.log(props.authUser)
             }
         }
         catch(e){
             console.log(e);
-            console.log(props.authUser)
         }
 
     }
@@ -104,7 +102,6 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
                 props.setMessage(`Successfully deleted`);
                 props.setSeverity('success');
                 props.setOpen(true);
-                console.log("5");
                 showSkills();
             }
         } catch (e: any) {
@@ -147,7 +144,6 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
                 let selectedPlayer = await getAuthorizedPlayer(props.authUser.username);
                 let sportArr = selectedPlayer.sports;
                 setSports(sportArr);
-                console.log(sports);
             }
         }
         catch(e){
