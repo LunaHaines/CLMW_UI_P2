@@ -108,10 +108,7 @@ function SidebarComponent(props: ISidebarProps) {
     }
 
 
-
     const classes = useStyles();
-
-
 
     return (
         <>

@@ -99,7 +99,7 @@ function LoginComponent(props: ILoginProps) {
                 props.setMessage('successfully logged in!');
                 props.setSeverity('success');
                 props.setOpen(true);
-                history.push('/playerteam');
+                history.push('/playerdashboard');
             } catch (e: any){
                 props.setSeverity('error');
                 props.setMessage(e?.response?.data.message);
