@@ -29,13 +29,16 @@ export const recruiterLogin = async (user: Credentials) => {
 
 export const playerLogin = async (user: Credentials) => {
     let resp = await teamManagerClient.post('/auth/player', user);
+    console.log("1");
 
     if (resp.status >= 400 && resp.status <= 599){
         throw resp.data;
     }
 
     localStorage.setItem('api-token', resp.headers['authorization']);
+    console.log("2");
     localStorage.setItem('user', JSON.stringify(resp.data));
+    console.log("3");
 
     return resp.data;
 } 

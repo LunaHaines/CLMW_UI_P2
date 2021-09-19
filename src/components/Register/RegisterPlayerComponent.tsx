@@ -35,7 +35,7 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
         name: "",
         username: "",
         password: "",
-        sport: ""
+        sports: ""
     });
 
     let handleChange = (e: any) => {
@@ -67,7 +67,10 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
         }
 
         try {
-            await RegisterNewPlayer(playerFormData);
+             const configuredData = {
+                 ...playerFormData, sports: [playerFormData.sports]
+             }
+            await RegisterNewPlayer(configuredData);
             props.setMessage('Successfully registered!');
             props.setSeverity('success');
             props.setOpen(true);
@@ -119,11 +122,11 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
                 </FormControl>
 
                 <FormControl margin='normal' fullWidth>
-                    <InputLabel htmlFor='sport'>Sport</InputLabel>
+                    <InputLabel htmlFor='sports'>Sport</InputLabel>
                     <Input
                         onChange={ handleChange }
-                        id='sport'
-                        name='sport'
+                        id='sports'
+                        name='sports'
                         type='text'
                         placeholder='Enter your sport'
                     />
