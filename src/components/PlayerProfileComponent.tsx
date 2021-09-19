@@ -1,4 +1,4 @@
-import { createStyles, Input, InputLabel, Theme, makeStyles, Button, Grid, Typography } from "@material-ui/core";
+import { createStyles, Input, InputLabel, Theme, makeStyles, Button, Grid, Typography, Select, MenuItem } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import { Color } from '@material-ui/lab/Alert';
 import { Principal } from "../dtos/principal";
@@ -225,19 +225,35 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
             </Button>
             <Grid container>
                 <Grid item sm={8}>
-                    <div className={classes.root}>
-                        <FormControl margin='normal' fullWidth>
-                            <InputLabel htmlFor='addedSport'>Add Sport</InputLabel>
-                            <Input
-                                onChange={handleChange}
-                                id='addedSport'
-                                name='addedSport'
-                                type='text'
-                                placeholder='Enter a sport to add'
-                                value={formData.addedSport}
-                            />
-                        </FormControl>
-                    </div>
+                <div className={classes.root}>
+                    <FormControl margin="normal" fullWidth>
+                        <InputLabel htmlFor="addedSport">sport</InputLabel>
+                        <Select
+                        id="addedSport"
+                        name="addedSport"
+                        label="Sport"
+                        onChange={handleChange}
+                        value={formData.addedSport}
+                    >
+                        <MenuItem value="Baseball">Baseball</MenuItem>
+                        <MenuItem value="Basketball">Basketball</MenuItem>
+                        <MenuItem value="Bocce">Bocce</MenuItem>
+                        <MenuItem value="Boxing">Boxing</MenuItem>
+                        <MenuItem value="Cricket">Cricket</MenuItem>
+                        <MenuItem value="Football">Football (American)</MenuItem>
+                        <MenuItem value="Soccer">Football (Soccer)</MenuItem>
+                        <MenuItem value="Golf">Golf</MenuItem>
+                        <MenuItem value="Gymnastics">Gymnastics</MenuItem>
+                        <MenuItem value="Hockey">Hockey</MenuItem>
+                        <MenuItem value="Lacrosse">Lacrosse</MenuItem>
+                        <MenuItem value="Rugby">Rugby</MenuItem>
+                        <MenuItem value="Table Tennis">Table Tennis</MenuItem>
+                        <MenuItem value="Tennis">Tennis</MenuItem>
+                        <MenuItem value="Volleyball">Volleyball</MenuItem>
+                        <MenuItem value="Wrestling">Wrestling</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
                 </Grid>
                 <Grid item sm>
                     <tbody className={classes.display}>

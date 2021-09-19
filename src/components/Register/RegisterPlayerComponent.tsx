@@ -1,4 +1,4 @@
-import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles, Typography } from '@material-ui/core';
+import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles, Typography, MenuItem, Select } from '@material-ui/core';
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
@@ -120,16 +120,37 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
                     />
                 </FormControl>
 
-                <FormControl margin='normal' fullWidth>
-                    <InputLabel htmlFor='sports'>Sport</InputLabel>
-                    <Input
-                        onChange={ handleChange }
-                        id='sports'
-                        name='sports'
-                        type='text'
-                        placeholder='Enter your sport'
-                    />
-                </FormControl>
+                <FormControl margin="normal" fullWidth>
+                    <InputLabel htmlFor="sport">Sport</InputLabel>
+                    <Select
+                        id="sport"
+                        name="sport"
+                        label="Sport"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value="Baseball">Baseball</MenuItem>
+                        <MenuItem value="Basketball">Basketball</MenuItem>
+                        <MenuItem value="Bocce">Bocce</MenuItem>
+                        <MenuItem value="Boxing">Boxing</MenuItem>
+                        <MenuItem value="Cricket">Cricket</MenuItem>
+                        <MenuItem value="Football">Football (American)</MenuItem>
+                        <MenuItem value="Soccer">Football (Soccer)</MenuItem>
+                        <MenuItem value="Golf">Golf</MenuItem>
+                        <MenuItem value="Gymnastics">Gymnastics</MenuItem>
+                        <MenuItem value="Hockey">Hockey</MenuItem>
+                        <MenuItem value="Lacrosse">Lacrosse</MenuItem>
+                        <MenuItem value="Rugby">Rugby</MenuItem>
+                        <MenuItem value="Table Tennis">Table Tennis</MenuItem>
+                        <MenuItem value="Tennis">Tennis</MenuItem>
+                        <MenuItem value="Volleyball">Volleyball</MenuItem>
+                        <MenuItem value="Wrestling">Wrestling</MenuItem>
+                    </Select>                </FormControl>
+
+
+Message Colby Wall, Luna Haines, Mitchell Panenko
+Enter to sendShift + Enter to add a new line
+Slack needs your permission to 
+.
 
 
                 <br/><br/>
