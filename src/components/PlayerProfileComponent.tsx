@@ -227,7 +227,7 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
                 <Grid item sm={8}>
                 <div className={classes.root}>
             <FormControl margin="normal" fullWidth>
-                    <InputLabel htmlFor="addedSport">sport</InputLabel>
+                    <InputLabel htmlFor="addedSport">Sport</InputLabel>
                     <Select
                         id="addedSport"
                         name="addedSport"
@@ -244,9 +244,9 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
                         <MenuItem value="Soccer">Football (Soccer)</MenuItem>
                         <MenuItem value="Golf">Golf</MenuItem>
                         <MenuItem value="Gymnastics">Gymnastics</MenuItem>
-                        <MenuItem value="Technical">Hockey</MenuItem>
+                        <MenuItem value="Hockey">Hockey</MenuItem>
                         <MenuItem value="Lacrosse">Lacrosse</MenuItem>
-                        <MenuItem value="Rugbyl">Rugby</MenuItem>
+                        <MenuItem value="Rugby">Rugby</MenuItem>
                         <MenuItem value="Table Tennis">Table Tennis</MenuItem>
                         <MenuItem value="Tennis">Tennis</MenuItem>
                         <MenuItem value="Volleyball">Volleyball</MenuItem>
@@ -254,7 +254,6 @@ function PlayerProfileComponent(props: IPlayerProfileProps){
                     </Select>
                 </FormControl>
             </div>
-            
                 </Grid>
                 <Grid item sm>
                     <tbody className={classes.display}>
