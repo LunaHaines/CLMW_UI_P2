@@ -42,7 +42,6 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
         const { name, value } = e.target;
         console.log(e.target);
         setFormData({...playerFormData, [name]: value});
-        console.log(playerFormData);
     }
 
     let isFormValid = () => {
