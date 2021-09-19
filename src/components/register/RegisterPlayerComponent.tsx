@@ -35,7 +35,7 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
         name: "",
         username: "",
         password: "",
-        sport: ""
+        sports: ""
     });
 
     let handleChange = (e: any) => {
@@ -67,9 +67,9 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
         }
 
         try {
-            const configuredData = {
-                             ...playerFormData, sports: [playerFormData.sport]
-                         }
+             const configuredData = {
+                 ...playerFormData, sports: [playerFormData.sports]
+             }
             await RegisterNewPlayer(configuredData);
             props.setMessage('Successfully registered!');
             props.setSeverity('success');
