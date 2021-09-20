@@ -1,8 +1,8 @@
-import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles, Typography } from "@material-ui/core";
+import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles, Typography, MenuItem, Select } from "@material-ui/core";
 import { Color } from '@material-ui/lab/Alert'
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { registerNewCoach } from "../remote/coach-service";
+import { registerNewCoach } from "../../remote/coach-service";
 
 interface IRegisterCoachProps {
     open: boolean,
@@ -32,7 +32,8 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
         username: '',
         password: '',
         sport: '',
-        teamName: ''
+        teamName: '',
+        pin:''
     });
 
     let handleChange = (e: any) => {
@@ -110,17 +111,31 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
                 />
             </FormControl>
 
-            <FormControl margin='normal' fullWidth>
-                <InputLabel htmlFor='sport'>Sport</InputLabel>
-                <Input
-                    onChange={handleChange}
-                    id='sport'
-                    name='sport'
-                    type='text'
-                    placeholder='Enter your sport'
-                />
-            </FormControl>
-
+            <FormControl margin="normal" fullWidth>
+                    <InputLabel htmlFor="sport">Sport</InputLabel>
+                    <Select
+                        id="sport"
+                        name="sport"
+                        label="Sport"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value="Baseball">Baseball</MenuItem>
+                        <MenuItem value="Basketball">Basketball</MenuItem>
+                        <MenuItem value="Bocce">Bocce</MenuItem>
+                        <MenuItem value="Boxing">Boxing</MenuItem>
+                        <MenuItem value="Cricket">Cricket</MenuItem>
+                        <MenuItem value="Football">Football (American)</MenuItem>
+                        <MenuItem value="Soccer">Football (Soccer)</MenuItem>
+                        <MenuItem value="Golf">Golf</MenuItem>
+                        <MenuItem value="Gymnastics">Gymnastics</MenuItem>
+                        <MenuItem value="Hockey">Hockey</MenuItem>
+                        <MenuItem value="Lacrosse">Lacrosse</MenuItem>
+                        <MenuItem value="Rugby">Rugby</MenuItem>
+                        <MenuItem value="Table Tennis">Table Tennis</MenuItem>
+                        <MenuItem value="Tennis">Tennis</MenuItem>
+                        <MenuItem value="Volleyball">Volleyball</MenuItem>
+                        <MenuItem value="Wrestling">Wrestling</MenuItem>
+                    </Select>                </FormControl>
             <FormControl margin='normal' fullWidth>
                 <InputLabel htmlFor='teamName'>Team Name</InputLabel>
                 <Input
@@ -129,6 +144,16 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
                     name='teamName'
                     type='text'
                     placeholder='Enter your team name'
+                />
+            </FormControl>
+            <FormControl margin='normal' fullWidth>
+                <InputLabel htmlFor='teamName'>Coach pin</InputLabel>
+                <Input
+                    onChange={handleChange}
+                    id='pin'
+                    name='pin'
+                    type='text'
+                    placeholder='Enter pin'
                 />
             </FormControl>
             <br/><br/>

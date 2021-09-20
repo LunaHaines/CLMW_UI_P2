@@ -9,7 +9,9 @@ import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Principal } from '../dtos/principal';
 import { coachLogin } from '../remote/auth-service';
-import { recruiterLogin } from '../remote/auth-service'
+import { recruiterLogin } from '../remote/auth-service';
+import { playerLogin } from '../remote/auth-service';
+
 
 interface ILoginProps {
     setAuthUser: (nextUser: Principal | undefined) => void,
@@ -63,8 +65,8 @@ function LoginComponent(props: ILoginProps) {
             props.setMessage('Please provide a username and password');
             props.setSeverity('warning');
             props.setOpen(true);
-        }       
-        if (formData.role === 'coach') {    //This is not else if() will still attempt to login if username or password is not set
+        }
+        if (formData.role === 'coach') {
             try {
                 let principal = await coachLogin(formData);
                 props.setAuthUser(principal);
@@ -74,10 +76,10 @@ function LoginComponent(props: ILoginProps) {
                 history.push('/coachdashboard')
             } catch (e: any) {
                 props.setSeverity('error');
-                props.setMessage(e.response.data.message);
+                props.setMessage(e?.response?.data.message);
                 props.setOpen(true);
             }
-        } else if (formData.role === 'recruiter'){
+        }else if (formData.role === 'recruiter'){
             try {
                 let principal = await recruiterLogin(formData);
                 props.setAuthUser(principal);
@@ -87,7 +89,20 @@ function LoginComponent(props: ILoginProps) {
                 history.push('/recruiterdashboard')
             } catch (e: any) {
                 props.setSeverity('error');
-                props.setMessage(e.response.data.message);
+                props.setMessage(e?.response?.data.message);
+                props.setOpen(true);
+            }
+        }else if (formData.role === 'player'){
+            try{
+                let principal = await playerLogin(formData);
+                props.setAuthUser(principal);
+                props.setMessage('successfully logged in!');
+                props.setSeverity('success');
+                props.setOpen(true);
+                history.push('/playerdashboard');
+            } catch (e: any){
+                props.setSeverity('error');
+                props.setMessage(e?.response?.data.message);
                 props.setOpen(true);
             }
         }
@@ -122,9 +137,9 @@ function LoginComponent(props: ILoginProps) {
             <FormControl component="fieldset" className={classes.role}>
                 <FormLabel component="legend">Role</FormLabel>
                 <RadioGroup aria-label="role" name="role" value={formData.role} onChange={handleChange}>
-                    <FormControlLabel value="player" control={<Radio />} label="player" />
-                    <FormControlLabel value="coach" control={<Radio />} label="coach" />
-                    <FormControlLabel value="recruiter" control={<Radio />} label="recruiter" />
+                    <FormControlLabel id='player-radio' value="player" control={<Radio />} label="player" />
+                    <FormControlLabel id='coach-radio' value="coach" control={<Radio />} label="coach" />
+                    <FormControlLabel id='recruiter-radio' value="recruiter" control={<Radio />} label="recruiter" />
                 </RadioGroup>
             </FormControl>
             <Button
