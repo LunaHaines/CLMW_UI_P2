@@ -89,10 +89,12 @@ describe('RegisterRecruiterComponent Test Suite', () => {
         let nameInputWrapper = wrapper.find('input[name="name"]');
         let usernameWrapper = wrapper.find('input[name="username"]');
         let passwordWrapper = wrapper.find('input[name="password"]');
+        let pinInputWrapper = wrapper.find('input[name="pin"]')
         
         // set up wrapper for button id
         const buttonWrapper = wrapper.find('button[id="register-recruiter-button"]');
 
+        pinInputWrapper.simulate('change', {target: {name: 'pin', value: 'validPin'}})
         nameInputWrapper.simulate('change',{target: {name: 'name', value: 'validName'}});
         usernameWrapper.simulate('change',{target: {name: 'username', value: 'validUsername'}});
         passwordWrapper.simulate('change',{target: {name: 'password', value: 'validPassword'}});
