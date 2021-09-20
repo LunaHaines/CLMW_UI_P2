@@ -34,7 +34,8 @@ function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
     const [recruiterFormData, setFormData] = useState({
         name: "",
         username: "",
-        password: ""
+        password: "",
+        pin: ""
     });
 
     let handleChange = (e: any) => {
@@ -116,6 +117,17 @@ function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
                         placeholder='Enter your password'
                     />
                 </FormControl>
+
+                <FormControl margin='normal' fullWidth>
+                <InputLabel htmlFor='teamName'>Recruiter pin</InputLabel>
+                <Input
+                    onChange={handleChange}
+                    id='pin'
+                    name='pin'
+                    type='text'
+                    placeholder='Enter pin'
+                />
+            </FormControl>
                 <br/><br/>
                 <Button
                     id='register-player-button'
