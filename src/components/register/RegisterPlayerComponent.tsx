@@ -121,10 +121,10 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
                 </FormControl>
 
                 <FormControl margin="normal" fullWidth>
-                    <InputLabel htmlFor="sport">Sport</InputLabel>
+                    <InputLabel htmlFor="sports">Sport</InputLabel>
                     <Select
-                        id="sport"
-                        name="sport"
+                        id="sports"
+                        name="sports"
                         label="Sport"
                         onChange={handleChange}
                     >
