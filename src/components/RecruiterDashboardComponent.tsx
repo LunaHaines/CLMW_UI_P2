@@ -74,14 +74,15 @@ function RecruiterDashboard(props: IRecruiterDashboardProps) {
 
     const classes = useStyles();
 
-    let index = 1;
+    let index = 0;
 
     return (
         <div className={classes.root}>
             {players?.map((p) => {
+                index++;
                 return (
                     <>
-                        <Typography variant='body1'><b>{index}</b> <b>Name:</b> {p.name} | <b>Username:</b> {p.username} | <b>Sport:</b> {p.sports ? p.sports.map((s) => {return (`${s}, `)}) : 'none'} | <b>Team:</b> {p.teamName ? p.teamName : 'none'}</Typography>
+                        <Typography variant='body1'><b>{index}.</b> <b>Name:</b> {p.name} | <b>Username:</b> {p.username} | <b>Sport:</b> {p.sports ? p.sports.map((s) => {return (`${s}, `)}) : 'none'} | <b>Team:</b> {p.teamName ? p.teamName : 'none'}</Typography>
                         <Button
                             id={p.username}
                             variant="contained"
