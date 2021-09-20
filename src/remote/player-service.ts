@@ -7,7 +7,10 @@ import { Offer } from "../dtos/offer";
 
     export const registerNewPlayer = async (newPlayer: RegisterPlayerComponent) => {
 
-        let resp = await teamManagerClient.post('/players', newPlayer);
+        console.log(JSON.stringify(newPlayer));
+
+        let resp = await teamManagerClient.post('/players', JSON.stringify(newPlayer));
+        console.log(resp);
 
         if (resp.status >= 400 && resp.status <= 599){
             throw resp.data;
@@ -35,6 +38,30 @@ import { Offer } from "../dtos/offer";
             throw resp.data;
         }
 
+    }
+
+    export const DeleteSkill = async (deleteFromProfile: AddToProfile) => {
+
+        let resp = await teamManagerClient.put('/players/skill/manage', deleteFromProfile);
+
+        if (resp.status >= 400 && resp.status <= 599){
+            throw resp.data;
+        }
+        console.log(resp);
+
+        return resp;
+    }
+
+    export const DeleteSport = async (deleteFromProfile: AddToProfile) => {
+
+        let resp = await teamManagerClient.put('/players/sport/manage', deleteFromProfile);
+
+        if (resp.status >= 400 && resp.status <= 599){
+            throw resp.data;
+        }
+        console.log(resp);
+
+        return resp;
     }
 
     export const AddSport = async (addToProfile: AddToProfile) => {

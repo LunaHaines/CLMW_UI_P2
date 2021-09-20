@@ -109,10 +109,7 @@ function SidebarComponent(props: ISidebarProps) {
     }
 
 
-
     const classes = useStyles();
-
-
 
     return (
         <>
@@ -200,12 +197,6 @@ function SidebarComponent(props: ISidebarProps) {
                                 <PeopleRounded />
                             </ListItemIcon>
                             <ListItemText primary='Players' />
-                        </ListItem>
-                        <ListItem button key='Profile'>
-                            <ListItemIcon>
-                                <AccountCircleRounded />
-                            </ListItemIcon>
-                            <ListItemText primary='Profile' />
                         </ListItem>
                         <ListItem button key='Logout' id='rec-logout' onClick={handleLogoutClick}>
                             <ListItemIcon>

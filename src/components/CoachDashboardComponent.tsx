@@ -38,7 +38,7 @@ function CoachDashboardComponent(props: ICoachDashboardProps) {
              //Get all players that have the same sport as the Coach
               let currentCoach = await getAuthorizedCoach(props.authUser.username);
               let playersRequest = await getAllPlayers(currentCoach.sport);
-              playersRequest = playersRequest.filter( (player:any) => (player.teamName === null) )
+              playersRequest = playersRequest.filter( (player:any) => (!player.teamName) )
               //Filter the player objects into username/name.
               //If they have an active offer from the coach, allow the coach to cancel the offer.
               //Otherwise, allow them to extend an offer.
@@ -82,7 +82,7 @@ function CoachDashboardComponent(props: ICoachDashboardProps) {
             !props.authUser ?  <Redirect to="/login"/> :
             <>
             <div style={{ height: 580, width: '95%' }} className={classes.root} >
-                <h1 id='title'>Available students</h1>
+                <h1 id='title'>Available players</h1>
                 <table id='students'>
                    <tbody>
                       {players}
