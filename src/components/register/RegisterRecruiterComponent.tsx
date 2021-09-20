@@ -2,7 +2,7 @@ import { Button, FormControl, Input, InputLabel, makeStyles, Theme, createStyles
 import MuiAlert, { AlertProps, Color } from '@material-ui/lab/Alert';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
-import { RegisterNewRecruiter } from '../../remote/recruiter-service';
+import { registerNewRecruiter } from '../../remote/recruiter-service';
 
 interface IRegisterRecruiterProps{
     open: boolean,
@@ -11,10 +11,6 @@ interface IRegisterRecruiterProps{
     setMessage: (newMessage: string) => void,
     severity: Color | undefined,
     setSeverity: (newSeverity: Color | undefined) => void
-}
-
-function Alert(props: AlertProps){
-    return <MuiAlert elevation={6} variant='filled' {...props} />;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -47,8 +43,8 @@ function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
 
     let isFormValid = () => {
         console.log(recruiterFormData);
-        for (const [value] of Object.entries(recruiterFormData)){
-            console.log(value);
+        for (const [key, value] of Object.entries(recruiterFormData)){
+            console.log(key,value);
             if (!value){
                 console.log(value);
                 return false;
@@ -62,12 +58,12 @@ function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
         if(!isFormValid()){
             props.setMessage('Please fill in all fields');
             props.setSeverity('warning');
-            props.setOpen(true)
+            props.setOpen(true);
             return;
         }
 
         try {
-            await RegisterNewRecruiter(recruiterFormData);
+            await registerNewRecruiter(recruiterFormData);
             props.setMessage('Successfully registered!');
             props.setSeverity('success');
             props.setOpen(true);
@@ -130,7 +126,7 @@ function RegisterRecruiterComponent (props: IRegisterRecruiterProps){
             </FormControl>
                 <br/><br/>
                 <Button
-                    id='register-player-button'
+                    id='register-recruiter-button'
                     onClick={register}
                     variant='contained'
                     color='primary'

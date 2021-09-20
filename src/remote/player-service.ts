@@ -5,7 +5,7 @@ import { teamManagerClient } from "./team-manager-client";
 import { AddToProfile } from "../dtos/addToProfile";
 import { Offer } from "../dtos/offer";
 
-    export const RegisterNewPlayer = async (newPlayer: RegisterPlayerComponent) => {
+    export const registerNewPlayer = async (newPlayer: RegisterPlayerComponent) => {
 
         console.log(JSON.stringify(newPlayer));
 
