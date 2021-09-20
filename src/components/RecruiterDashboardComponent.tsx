@@ -83,6 +83,7 @@ function RecruiterDashboard(props: IRecruiterDashboardProps) {
                     <>
                         <Typography variant='body1'><b>{index}</b> <b>Name:</b> {p.name} | <b>Username:</b> {p.username} | <b>Sport:</b> {p.sports ? p.sports.map((s) => {return (`${s}, `)}) : 'none'} | <b>Team:</b> {p.teamName ? p.teamName : 'none'}</Typography>
                         <Button
+                            id={p.username}
                             variant="contained"
                             color="primary"
                             size="small"
@@ -93,7 +94,7 @@ function RecruiterDashboard(props: IRecruiterDashboardProps) {
                     </>
                 )
             })}
-            <Dialog open={dialogOpen} onClose={handleClose}>
+            <Dialog open={dialogOpen} id='dialog' onClose={handleClose}>
                 <DialogTitle>{selectedPlayer?.name}'s skills</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -111,11 +112,11 @@ function RecruiterDashboard(props: IRecruiterDashboardProps) {
                     <TextField id='rating' label='Rating' variant='outlined' onChange={handleRatingChange} fullWidth />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} variant='outlined' color='primary'>
+                    <Button onClick={handleClose} id='cancel' variant='outlined' color='primary'>
                         Cancel
                     </Button>
                     <Button
-                        id=''
+                        id='rate-skill'
                         variant='outlined'
                         color='primary'
                         onClick={ratePlayerSkill}

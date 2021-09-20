@@ -7,6 +7,7 @@ import { Principal } from "../dtos/principal";
 import clsx from 'clsx';
 import { useHistory } from "react-router";
 import { teamManagerClient } from "../remote/team-manager-client";
+import axios from "axios";
 
 interface ISidebarProps {
     authUser: Principal | undefined,
@@ -98,7 +99,7 @@ function SidebarComponent(props: ISidebarProps) {
     let handleRecPlayersClick = () => {
         history.push('/recruiterdashboard')
     }
-
+    
     let handlePlayerWorkoutsClick = () => {
         history.push('/playerworkouts')
     }
@@ -131,19 +132,19 @@ function SidebarComponent(props: ISidebarProps) {
                     {
                     (props.authUser?.role === 'Coach') ?
                     <>
-                        <ListItem button key='Team' onClick={handleCoachTeamClick}>
+                        <ListItem button key='Team' id='coach-team' onClick={handleCoachTeamClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
                             <ListItemText primary='Team' />
                         </ListItem>
-                        <ListItem button key='Workouts' onClick={handleCoachWorkoutClick}>
+                        <ListItem button key='Workouts' id='coach-workouts' onClick={handleCoachWorkoutClick}>
                             <ListItemIcon>
                                 <SportsRounded />
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Players' onClick={handleCoachDashboardClick}>
+                        <ListItem button key='Players' id='coach-players' onClick={handleCoachDashboardClick}>
                             <ListItemIcon>
                                 <GroupAddRounded />
                             </ListItemIcon>
@@ -158,31 +159,31 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     : (props.authUser?.role === 'Player') ?
                     <>
-                        <ListItem button key='Offers' onClick={handleOffersClick}>
+                        <ListItem button key='Offers' id='offers' onClick={handleOffersClick}>
                             <ListItemIcon>
                                 <AttachMoneyRounded />
                             </ListItemIcon>
                             <ListItemText primary='Offers' />
                         </ListItem>
-                        <ListItem button key='Team' onClick={handlePlayerTeamClick}>
+                        <ListItem button key='Team' id='player-team' onClick={handlePlayerTeamClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
                             <ListItemText primary='Team' />
                         </ListItem>
-                        <ListItem button key='Workouts' onClick={handlePlayerWorkoutsClick}>
+                        <ListItem button key='Workouts' id='player-workouts' onClick={handlePlayerWorkoutsClick}>
                             <ListItemIcon>
                                 <SportsRounded />
                             </ListItemIcon>
                             <ListItemText primary='Workouts' />
                         </ListItem>
-                        <ListItem button key='Profile' onClick = {playerProfile}>
+                        <ListItem button key='Profile' id='player-profile' onClick = {playerProfile}>
                             <ListItemIcon>
                                 <AccountCircleRounded />
                             </ListItemIcon>
                             <ListItemText primary='Profile' />
                         </ListItem>
-                        <ListItem button key='Logout' onClick={handleLogoutClick}>
+                        <ListItem button key='Logout' id='player-logout' onClick={handleLogoutClick}>
                             <ListItemIcon>
                                 <Backspace />
                             </ListItemIcon>
@@ -191,13 +192,13 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     : (props.authUser?.role === 'Recruiter') ?
                     <>
-                        <ListItem button key='Players'>
+                        <ListItem button key='Players' id='players' onClick={handleRecPlayersClick}>
                             <ListItemIcon>
                                 <PeopleRounded />
                             </ListItemIcon>
-                            <ListItemText primary='Players' onClick={handleRecPlayersClick} />
+                            <ListItemText primary='Players' />
                         </ListItem>
-                        <ListItem button key='Logout' onClick={handleLogoutClick}>
+                        <ListItem button key='Logout' id='rec-logout' onClick={handleLogoutClick}>
                             <ListItemIcon>
                                 <Backspace />
                             </ListItemIcon>
@@ -206,13 +207,13 @@ function SidebarComponent(props: ISidebarProps) {
                     </>
                     :
                     <>
-                        <ListItem button key='Login' onClick={handleLoginClick}>
+                        <ListItem button key='Login' id='login' onClick={handleLoginClick}>
                             <ListItemIcon>
                                 <Person />
                             </ListItemIcon>
                             <ListItemText primary='Login' />
                         </ListItem>
-                        <ListItem button key='Register' onClick={handleRegisterClick}>
+                        <ListItem button key='Register' id='register' onClick={handleRegisterClick}>
                             <ListItemIcon>
                                 <PersonAdd />
                             </ListItemIcon>
