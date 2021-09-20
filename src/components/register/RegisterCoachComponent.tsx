@@ -32,7 +32,8 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
         username: '',
         password: '',
         sport: '',
-        teamName: ''
+        teamName: '',
+        pin:''
     });
 
     let handleChange = (e: any) => {
@@ -111,7 +112,7 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
             </FormControl>
 
             <FormControl margin="normal" fullWidth>
-                <InputLabel htmlFor="sport">sport</InputLabel>
+                <InputLabel htmlFor="sport">Sport</InputLabel>
                     <Select
                         id="sport"
                         name="sport"
@@ -127,9 +128,9 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
                         <MenuItem value="Soccer">Football (Soccer)</MenuItem>
                         <MenuItem value="Golf">Golf</MenuItem>
                         <MenuItem value="Gymnastics">Gymnastics</MenuItem>
-                        <MenuItem value="Technical">Hockey</MenuItem>
+                        <MenuItem value="Hockey">Hockey</MenuItem>
                         <MenuItem value="Lacrosse">Lacrosse</MenuItem>
-                        <MenuItem value="Rugbyl">Rugby</MenuItem>
+                        <MenuItem value="Rugby">Rugby</MenuItem>
                         <MenuItem value="Table Tennis">Table Tennis</MenuItem>
                         <MenuItem value="Tennis">Tennis</MenuItem>
                         <MenuItem value="Volleyball">Volleyball</MenuItem>
@@ -145,6 +146,16 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
                     name='teamName'
                     type='text'
                     placeholder='Enter your team name'
+                />
+            </FormControl>
+            <FormControl margin='normal' fullWidth>
+                <InputLabel htmlFor='teamName'>Coach pin</InputLabel>
+                <Input
+                    onChange={handleChange}
+                    id='pin'
+                    name='pin'
+                    type='text'
+                    placeholder='Enter pin'
                 />
             </FormControl>
             <br/><br/>
