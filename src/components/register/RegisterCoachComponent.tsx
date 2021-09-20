@@ -112,7 +112,7 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
             </FormControl>
 
             <FormControl margin="normal" fullWidth>
-                <InputLabel htmlFor="sport">Sport</InputLabel>
+                    <InputLabel htmlFor="sport">Sport</InputLabel>
                     <Select
                         id="sport"
                         name="sport"
@@ -135,9 +135,7 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
                         <MenuItem value="Tennis">Tennis</MenuItem>
                         <MenuItem value="Volleyball">Volleyball</MenuItem>
                         <MenuItem value="Wrestling">Wrestling</MenuItem>
-                    </Select>
-                </FormControl>
-
+                    </Select>                </FormControl>
             <FormControl margin='normal' fullWidth>
                 <InputLabel htmlFor='teamName'>Team Name</InputLabel>
                 <Input

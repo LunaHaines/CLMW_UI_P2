@@ -35,14 +35,13 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
         name: "",
         username: "",
         password: "",
-        sport: ""
+        sports: ""
     });
 
     let handleChange = (e: any) => {
         const { name, value } = e.target;
         console.log(e.target);
         setFormData({...playerFormData, [name]: value});
-        console.log(playerFormData);
     }
 
     let isFormValid = () => {
@@ -67,9 +66,9 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
         }
 
         try {
-            const configuredData = {
-                             ...playerFormData, sports: [playerFormData.sport]
-                         }
+             const configuredData = {
+                 ...playerFormData, sports: [playerFormData.sports]
+             }
             await RegisterNewPlayer(configuredData);
             props.setMessage('Successfully registered!');
             props.setSeverity('success');
@@ -146,10 +145,7 @@ function RegisterPlayerComponent (props: IRegisterPlayerProps){
                         <MenuItem value="Volleyball">Volleyball</MenuItem>
                         <MenuItem value="Wrestling">Wrestling</MenuItem>
                     </Select>
-
                 </FormControl>
-
-
                 <br/><br/>
                 <Button
                     id='register-player-button'
