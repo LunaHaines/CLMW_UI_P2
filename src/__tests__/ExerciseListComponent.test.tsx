@@ -18,22 +18,22 @@ describe('SidebarComponent Test Suite', () => {
         expect(wrapper).toBeTruthy();
     })
 
-    it('assignExercise is called when assign button is clicked', () => {
-        let mockExercises = [new Exercise("bodypart","equipment","","id","name","target")];
+    // it('assignExercise is called when assign button is clicked', () => {
+    //     let mockExercises = [new Exercise("bodypart","equipment","","id","name","target")];
 
-        const wrapper = mount(<ExerciseListComponent exercises={mockExercises} coach={""} />)
+    //     const wrapper = mount(<ExerciseListComponent exercises={mockExercises} coach={""} />)
 
-        console.log(wrapper.debug());
+    //     console.log(wrapper.debug());
 
-        let assignButtonWrapper = wrapper.find('div[id="name"]');
+    //     let assignButtonWrapper = wrapper.find('div[id="name"]');
 
-        jest.spyOn(window,'alert');
+    //     jest.spyOn(window,'alert');
 
-        assignButtonWrapper.simulate('click');
+    //     assignButtonWrapper.simulate('click');
 
-        expect(assignExercise).toBeCalled();
-        expect(window.alert).toBeCalledWith(`Assigned name to your team!`)
-    })
+    //     expect(assignExercise).toBeCalled();
+    //     expect(window.alert).toBeCalledWith(`Assigned name to your team!`)
+    // })
 
 
 
