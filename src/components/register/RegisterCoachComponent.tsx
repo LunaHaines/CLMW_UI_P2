@@ -32,7 +32,8 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
         username: '',
         password: '',
         sport: '',
-        teamName: ''
+        teamName: '',
+        pin:''
     });
 
     let handleChange = (e: any) => {
@@ -143,6 +144,16 @@ function RegisterCoachComponent(props: IRegisterCoachProps) {
                     name='teamName'
                     type='text'
                     placeholder='Enter your team name'
+                />
+            </FormControl>
+            <FormControl margin='normal' fullWidth>
+                <InputLabel htmlFor='teamName'>Coach pin</InputLabel>
+                <Input
+                    onChange={handleChange}
+                    id='pin'
+                    name='pin'
+                    type='text'
+                    placeholder='Enter pin'
                 />
             </FormControl>
             <br/><br/>
