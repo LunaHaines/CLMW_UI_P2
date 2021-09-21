@@ -3,6 +3,7 @@ import { PositionRequest } from "../dtos/position-request";
 import { RegisterCoachRequest } from "../dtos/register-coach-request";
 import { teamManagerClient } from "./team-manager-client"
 
+//Creates a new coach that is able to log in
 export const registerNewCoach = async (newCoach: RegisterCoachRequest) => {
 
     let resp = await teamManagerClient.post(`/coach/${newCoach.pin}`, newCoach);
@@ -13,6 +14,7 @@ export const registerNewCoach = async (newCoach: RegisterCoachRequest) => {
 
 }
 
+//Adds an exercise to the exercise array of a coach and all players on their team
 export const assignExercise = async (exerciseName: string, coach: String | undefined) => {
     let resp = await teamManagerClient.patch(`/coach/assign/${coach}`, exerciseName);
 
@@ -22,6 +24,7 @@ export const assignExercise = async (exerciseName: string, coach: String | undef
 
 }
 
+//Remove a player from a coach's team
 export const removePlayer = async (removeOffer: Offer) => {
     let resp = await teamManagerClient.patch(`/coach/team/remove`, removeOffer);
 
@@ -33,6 +36,7 @@ export const removePlayer = async (removeOffer: Offer) => {
 
 }
 
+//Adds a player to a coach's team
 export const acceptOffer = async (acceptedOffer: Offer) => {
 
     let resp = await teamManagerClient.put('/coach/team', acceptedOffer);
@@ -45,6 +49,7 @@ export const acceptOffer = async (acceptedOffer: Offer) => {
 
 }
 
+//Retrieve a coach object
 export const getAuthorizedCoach = async (coachUsername: string) => {
 
     let resp = await teamManagerClient.get(`/coach/${coachUsername}`);
@@ -56,6 +61,7 @@ export const getAuthorizedCoach = async (coachUsername: string) => {
     return resp.data;
 }
 
+//Assign a player to a position on a coach's team
 export const assignPlayerPosition = async (assignment: PositionRequest) => {
 
     let resp = await teamManagerClient.put('/coach/positions', assignment);
@@ -66,6 +72,7 @@ export const assignPlayerPosition = async (assignment: PositionRequest) => {
     
 }
 
+//Retrieve's a coach by using a team member's username
 export const getPlayerTeam = async (playerUsername: string) => {
 
     let resp = await teamManagerClient.get(`/coach/player/${playerUsername}`);

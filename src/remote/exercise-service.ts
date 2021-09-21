@@ -1,5 +1,6 @@
 import { exerciseDbClient } from "./exercisedb-client";
 
+//Retrieve all exercises from external API
 export const getAllExercises = async () => {
     let resp = await exerciseDbClient.get('/exercises');
 
@@ -10,6 +11,7 @@ export const getAllExercises = async () => {
     return resp.data;
 }
 
+//Retrieve specific exercise from external API
 export const getExerciseByTarget = async (target: string) => {
     let resp = await exerciseDbClient.get(`/exercises/target/${target}`);
 

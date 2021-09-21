@@ -1,6 +1,7 @@
 import { Credentials } from "../dtos/credentials"
 import { teamManagerClient } from "./team-manager-client"
 
+//Log in as a coach
 export const coachLogin = async (user: Credentials) => {
     let resp = await teamManagerClient.post('/auth/coach', user);
 
@@ -16,6 +17,7 @@ export const coachLogin = async (user: Credentials) => {
     return resp.data
 }
 
+//Log in as a recruiter
 export const recruiterLogin = async (user: Credentials) => {
     let resp = await teamManagerClient.post('/auth/recruiter', user);
 
@@ -31,6 +33,7 @@ export const recruiterLogin = async (user: Credentials) => {
     return resp.data
 } 
 
+//Log in as a player
 export const playerLogin = async (user: Credentials) => {
     let resp = await teamManagerClient.post('/auth/player', user);
 
