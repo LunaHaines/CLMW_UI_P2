@@ -48,7 +48,9 @@ This project leverages 2 APIs, information for each of which is included in [tea
 
 ## Usage
 Run `npm start` to run the application for development purposes.
+
 When unit testing, use `npm test` for general use and `npm test -- --coverage --watchAll` to run all tests with coverage.
+
 A secret pin is required to register as a Coach or Recruiter
 
 ## Contributors
